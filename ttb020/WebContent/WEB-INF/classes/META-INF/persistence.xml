@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+        http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="tt">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>escom.ttb020.controlacceso.mapeo.Usuario</class>
+		<class>escom.ttb020.controlacceso.mapeo.Perfil</class>
+		<class>escom.ttb020.gestionescolar.mapeo.Profesor</class>
+		<class>escom.ttb020.gestionescolar.mapeo.Alumno</class>
+		<class>escom.ttb020.gestionescolar.mapeo.Grupo</class>
+		<class>escom.ttb020.gestionescolar.mapeo.Proyecto</class>
+		<class>escom.ttb020.gestionescolar.mapeo.AlumnoGrupo</class>
+		<class>escom.ttb020.gestionescolar.mapeo.AlumnoGrupoId</class>
+		<class>escom.ttb020.gestionescolar.mapeo.AlumnoProyecto</class>
+		<class>escom.ttb020.gestionescolar.mapeo.AlumnoProyectoId</class>
+		<class>escom.ttb020.gestionescolar.mapeo.Diagrama</class>
+		<class>escom.ttb020.gestionescolar.mapeo.Comentario</class>
+		<class>escom.ttb020.gestionescolar.mapeo.Version</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/ttb020" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password"
+				value="rosegold" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.HSQLDialect" />
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.id.new_generator_mappings"
+				value="false" />
+		</properties>
+	</persistence-unit>
+
+</persistence>

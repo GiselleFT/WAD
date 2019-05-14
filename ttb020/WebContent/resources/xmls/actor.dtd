@@ -1,0 +1,4 @@
+<!ELEMENT root (actor)+>
+<!ELEMENT actor (name,hereda*)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT hereda (#PCDATA)>

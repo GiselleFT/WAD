@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root SYSTEM "actor.dtd">
+
+<root> 
+	<actor>	
+		<name>Persona</name>
+	</actor>
+	<actor>	
+		<name>Cliente</name>
+		<hereda>Persona</hereda>
+	</actor>
+	<actor>	
+		<name>Servicio al Cliente</name>
+		<hereda>Cliente</hereda>
+	</actor>
+</root> 

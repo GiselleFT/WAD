@@ -1,0 +1,8 @@
+<!ELEMENT root (case)+>
+<!ELEMENT case (entity,(extend|include)*)>
+<!ELEMENT entity (#PCDATA)>
+<!ATTLIST entity intent CDATA #REQUIRED>
+<!ELEMENT extend (#PCDATA)>
+<!ATTLIST extend intent CDATA #REQUIRED>
+<!ELEMENT include (#PCDATA)>
+<!ATTLIST include intent CDATA #REQUIRED>

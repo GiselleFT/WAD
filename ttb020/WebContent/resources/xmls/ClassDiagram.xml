@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE root SYSTEM "ClassDiagram.dtd">
+<root>
+	<class>
+		<name intent="7">Persona</name>
+		<attribute intent="6">Nombre</attribute>
+		<attribute intent="6">Apellido</attribute>
+		<attribute intent="6">Direccion</attribute>
+		<attribute intent="6">Telefono</attribute>
+		<attribute intent="6">Email</attribute>
+	</class>
+	<class>
+		<name intent="12">Empresa</name>
+		<attribute intent="6">RazonSocial</attribute>
+		<attribute intent="6">Direccion</attribute>
+		<attribute intent="6">RFC</attribute>
+		<attribute intent="6">Telefono</attribute>
+		<attribute intent="6">Email</attribute>
+		<attribute intent="6">CuentaBancaria</attribute>
+	</class>
+	<class>
+		<name intent="39">Empleado</name>
+		<attribute intent="7">puesto</attribute>
+		<attribute intent="6">idEmpleado</attribute>
+		<attribute intent="8">nombre</attribute>
+		<attribute intent="6">email</attribute>
+
+		<method intent="6">registarEntrada</method>
+		<method intent="6">registarSalida</method>
+		<attribute intent="1">cedula</attribute>
+		<relations>
+			<inheritance intent="7">Persona</inheritance>
+			<association intent="8">Facultad</association>
+			<inheritance intent="1">Investigador</inheritance>
+		</relations>
+		<method intent="1">metodo</method>
+	</class>
+	<class>
+		<name intent="6">Cliente</name>
+		<attribute intent="6">NumeroCliente</attribute>
+		<relations>
+			<inheritance intent="6">Persona</inheritance>
+		</relations>
+	</class>
+	<class>
+		<name intent="6">Perro</name>
+		<relations>
+			<inheritance intent="4">Animal</inheritance>
+		</relations>
+		<attribute intent="6">Cola</attribute>
+		<attribute intent="6">Pata</attribute>
+	</class>
+	<class>
+		<name intent="22">Facultad</name>
+		<attribute intent="6">Nombre</attribute>
+		<method intent="6">obtenerArea</method>
+		<relations>
+			<composition intent="10">Instituto</composition>
+		</relations>
+	</class>
+	<class>
+		<name intent="6">Empleado administrativo</name>
+		<attribute intent="6">Departamento</attribute>
+	</class>
+	<class>
+		<name intent="12">Investigador</name>
+		<attribute intent="6">CampoEstudio</attribute>
+		<relations>
+			<inheritance intent="6">Empleado</inheritance>
+		</relations>
+	</class>
+	<class>
+		<name intent="19">Instituto</name>
+		<attribute intent="6">Nombre</attribute>
+		<attribute intent="6">Direccion</attribute>
+		<relations>
+			<aggregation intent="7">Investigador</aggregation>
+		</relations>
+	</class>
+	<class>
+		<name intent="2">Programar Orden</name>
+		<relations>
+			<dependency intent="1">Orden</dependency>
+			<dependency intent="1">Entrega</dependency>
+		</relations>
+	</class>
+</root>

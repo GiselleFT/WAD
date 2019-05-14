@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE root SYSTEM "UseCase.dtd">
+<root>
+	<case>
+		<entity intent="15">inscribir alumno</entity>
+		<include intent="7">inscribir en seminario</include>
+	</case>
+	<case>
+		<entity intent="10">anunciar conferencia</entity>
+		<include intent="10">asignar expositor</include>
+	</case>
+	<case>
+		<entity intent="11">reservar sala conferencia</entity>
+		<extend intent="11">anunciar conferencia</extend>
+	</case>
+	<case>
+		<entity intent="1">inscribir alumno extranjero</entity>
+		<extend intent="1">inscribir alumno</extend>
+	</case>
+</root>

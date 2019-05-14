@@ -1,0 +1,19 @@
+<!ELEMENT root (class)+>
+<!ELEMENT class (name,(attribute|method|relations)*)>
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name intent CDATA #REQUIRED>
+<!ELEMENT attribute (#PCDATA)>
+<!ATTLIST attribute intent CDATA #REQUIRED>
+<!ELEMENT method (#PCDATA)>
+<!ATTLIST method intent CDATA #REQUIRED>
+<!ELEMENT relations ((inheritance|association|aggregation|composition|dependency)*)>
+<!ELEMENT inheritance (#PCDATA)>
+<!ATTLIST inheritance intent CDATA #REQUIRED>
+<!ELEMENT association (#PCDATA)>
+<!ATTLIST association intent CDATA #REQUIRED>
+<!ELEMENT aggregation (#PCDATA)>
+<!ATTLIST aggregation intent CDATA #REQUIRED>
+<!ELEMENT composition (#PCDATA)>
+<!ATTLIST composition intent CDATA #REQUIRED>
+<!ELEMENT dependency (#PCDATA)>
+<!ATTLIST dependency intent CDATA #REQUIRED>

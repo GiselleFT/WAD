@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>ttb020</display-name>
+	<welcome-file-list>
+		<welcome-file>pages/index.jsp</welcome-file>
+	</welcome-file-list>
+		<!-- Icono a mostrar por le navegador en la barra de direcciones -->
+	<icon>
+		<small-icon>/resources/images/favicon.png</small-icon>
+		<large-icon>/resources/images/favicon.png</large-icon>
+	</icon>
+	<!--  <filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+		<init-param>
+			<param-name>actionPackages</param-name>
+			<param-value>com.concretepage.action</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+	<!-- Filtro de Struts2 que prepara las peticiones que son recibidas -->
+	<filter>
+		<filter-name>struts-prepare</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareFilter</filter-class>
+	</filter>
+	<!-- Filtro que permite hacer uso de SiteMesh como decorador en el proyecto -->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+	</filter>
+	<!-- Filtro de struts2 que ejecuta la petición -->
+	<filter>
+		<filter-name>struts-execute</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.filter.StrutsExecuteFilter</filter-class>
+	</filter>
+		<!-- Se mapea el filtro para preparar la petición por parte de struts2 y 
+		esta es aplicada para cualquier url que venga directamente del cliente -->
+	<filter-mapping>
+		<filter-name>struts-prepare</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	<!-- Se mapea el filtro para aplicar el decorador a cualquier petición -->
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	<!-- Se mapea el filtro para ejecutar la petición por parte de struts2 y 
+		esta es aplicada para cualquier url que venga directamente del cliente -->
+	<filter-mapping>
+		<filter-name>struts-execute</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+</web-app>

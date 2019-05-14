@@ -1,0 +1,11 @@
+package escom.ttb020.bs.IA;
+
+public enum ElementCD {
+	ATTRIBUTE,
+	METHOD,
+	INHERITANCE,
+	ASSOCIATION,
+	AGGREGATION,
+	COMPOSITION,
+	DEPENDENCY;
+}

@@ -1,0 +1,6 @@
+/**
+ * 
+ */
+$(function() {
+	dataTableEMETH.createDataTableWhitOutInfo("tblGrupo");
+});

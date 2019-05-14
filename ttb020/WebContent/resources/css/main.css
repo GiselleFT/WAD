@@ -1,0 +1,335 @@
+/* Estilos generales */
+body {
+	font-family: "Raleway", Helvetica, Arial, Verdana, sans-serif !important;
+	font-size: 13px/16px";
+	background: #FFFFFF !important;
+}
+
+#content {
+	min-height: 400px !important;
+}
+
+.navbar {
+	padding: 0px 0px 0px 0px;
+}
+
+i {
+	cursor: pointer;
+}
+
+.hidden {
+	display: none;
+}
+
+.container-dialog {
+	width: 95%;
+}
+
+#dlgContact, .ui-dialog {
+	width: 650px !important;
+}
+
+#dlgContact>* {
+	display: block;
+}
+
+/* Otros estilos */
+#page-wrapper .intro-section {
+	padding-top: 105px !important;
+	padding-bottom: 20px !important;
+}
+
+.col-text {
+	text-align: left;
+}
+
+.col-actions {
+	max-width: 15% !important;
+	width: 15% !important;
+}
+
+.col-number {
+	max-width: 15% !important;
+	width: 15% !important;
+}
+
+table, th, tr, td {
+	color: #1b313d !important;
+	text-align: left;
+}
+
+.div-scroll {
+	overflow-y: scroll;
+	height: 50em;
+}
+
+.navbar-ttb020 {
+	background: #263035 !important;
+	background: -webkit-linear-gradient(#1b313d, #1b313d) !important;
+	background: -o-linear-gradient(#1b313d, #1b313d) !important;
+	background: -moz-linear-gradient(#1b313d, #1b313d) !important;
+	background: linear-gradient(#1b313d, #1b313d) !important;
+}
+
+#wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+#page-wrapper {
+	padding: 0 15px;
+	height: auto !important;
+	min-height: 100% !important;
+	background-color: white;
+}
+
+.btn {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+input.btn-ttb020 {
+	height: 34px;
+}
+
+.btn:focus, .btn-ttb020:focus {
+	background-color: DodgerBlue;
+	background-repeat: repeat-x;
+	text-shadow: none;
+	color: white;
+	border-color: DodgerBlue;
+}
+
+.transferselect-btn>.btn, .btn-ttb020 {
+	background-color: DodgerBlue;
+	background-repeat: repeat-x;
+	text-shadow: none;
+	color: white !important;
+	border-color: DodgerBlue;
+}
+
+.transferselect-btn>.btn:active, .btn-ttb020:active {
+	background-color: DodgerBlue !important;
+	color: white !important;
+}
+
+.transferselect-btn>.btn:hover, .btn-ttb020:hover {
+	background-color: #1b313d;
+	background-repeat: repeat-x;
+	text-shadow: none;
+	color: white;
+	border-color: #1b313d;
+}
+
+input.btn-ttb020-second {
+	height: 34px;
+}
+
+.btn:focus, .btn-ttb020-second:focus {
+	background-color: #FF9C00;
+	background-repeat: repeat-x;
+	text-shadow: none;
+	color: white;
+	border-color: #FF9C00;
+}
+
+.transferselect-btn>.btn, .btn-ttb020-second {
+	background-color: #FF9C00;
+	background-repeat: repeat-x;
+	text-shadow: none;
+	color: white !important;
+	border-color: #FF9C00;
+}
+
+.transferselect-btn>.btn:active, .btn-ttb020-second:active {
+	background-color: #FF9C00 !important;
+	color: white !important;
+}
+
+.transferselect-btn>.btn:hover, .btn-ttb020-second:hover {
+	background-color: #1b313d;
+	background-repeat: repeat-x;
+	text-shadow: none;
+	color: white;
+	border-color: #1b313d;
+}
+
+input.btn-ttb020-third {
+	height: 34px;
+}
+
+.btn:focus, .btn-ttb020-third:focus {
+	background-color: #c10003;
+	background-repeat: repeat-x;
+	text-shadow: none;
+	color: white;
+	border-color: #c10003;
+}
+
+.transferselect-btn>.btn, .btn-ttb020-third {
+	background-color: #c10003;
+	background-repeat: repeat-x;
+	text-shadow: none;
+	color: white !important;
+	border-color: #c10003;
+}
+
+.transferselect-btn>.btn:active, .btn-ttb020-third:active {
+	background-color: #c10003 !important;
+	color: white !important;
+}
+
+.transferselect-btn>.btn:hover, .btn-ttb020-third:hover {
+	background-color: #1b313d;
+	background-repeat: repeat-x;
+	text-shadow: none;
+	color: white;
+	border-color: #1b313d;
+}
+
+@CHARSET "UTF-8";
+
+/* Estilos para el fondo, tamaño y marco de un formulario */
+.form {
+	background-color: #FFFFFF;
+	border: 2px solid;
+	border-color: #FFFFFF;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	color: #000000;
+}
+
+.field-error {
+	border-color: red;
+}
+
+.form-medium {
+	width: 95%;
+}
+
+.form-group {
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+
+.form-group:last-child {
+	margin-bottom: 0px !important;
+	padding-bottom: 0px !important;
+}
+
+@media ( min-width : 992px) {
+	.input-min {
+		width: 40%;
+	}
+	.form-medium {
+		width: 70% !important;
+	}
+}
+
+.title {
+	margin: 0px 0px 20px 0px;
+	color: #1b313d;
+	font-size: 50px;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+fieldset.form-section {
+	border: 2px solid #4e9a0680020 !important;
+	padding: 10px 20px 20px 20px !important;
+	margin: 20px auto !important;
+	-webkit-box-shadow: 0px 0px 0px 0px #1b313d;
+	box-shadow: 0px 0px 0px 0px #000;
+	border-radius: 10px;
+	color: DodgerBlue;
+}
+
+div.outter-section {
+	margin: 20px auto !important;
+}
+
+div.outter-section .control-label {
+	color: #1b313d !important;
+}
+
+div.dialog-section {
+	color: #000000 !important;
+}
+
+div.form-section {
+	border: 2px solid rgb(80, 0, 20) !important;
+	border-radius: 10px;
+	box-shadow: 0 0 0 0 #000;
+	color: #000000;
+	margin: 0 0 20px !important;
+	padding: 0 20px 20px !important;
+	padding-top: 20px !important;
+}
+
+fieldset .dataTables_wrapper {
+	padding-top: 20px !important;
+}
+
+legend.form-section {
+	font-size: medium;
+	font-weight: bold !important;
+	text-align: left !important;
+	width: auto;
+	padding: 0px 0px 0px 0px;
+	margin-bottom: 0px;
+	border-bottom: none;
+	color: #1b313d;
+}
+
+.section.first {
+	border-radius: 8px 8px 0px 0px;
+	margin: -20px -20px 20px -20px !important;
+}
+
+.section {
+	background-color: rgba(130, 26, 20, 0.4);
+	color: white;
+	text-align: left;
+	font-size: large;
+	font-weight: bold;
+	padding: 10px 10px 0px 10px;
+	margin: 0px -20px 20px -20px !important;
+}
+
+a.btn-grid {
+	min-width: 50%;
+	width: 50%;
+	text-align: center !important;
+	background-color: #009A88;
+	color: white;
+}
+
+a.btn-grid-second {
+	min-width: 50%;
+	width: 50%;
+	text-align: center !important;
+	background-color: #FF9C00;
+	color: white;
+}
+
+a.btn-grid-third {
+	min-width: 50%;
+	width: 50%;
+	text-align: center !important;
+	background-color: DodgerBlue;
+	color: white;
+}
+
+a.btn-grid>* {
+	margin-top: auto !important;
+	margin-bottom: auto !important;
+}
+
+.buttons-right {
+	margin-top: 20px;
+}
