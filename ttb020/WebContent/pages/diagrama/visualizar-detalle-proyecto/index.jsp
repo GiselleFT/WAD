@@ -49,7 +49,7 @@
 	<div class="row">
 		<div class="outter-section form-medium text-left">
 			<div class="col-md-12 text-md-left ">
-				<label class="control-label text-left">Grupo</label>
+				<label class="control-label text-left">Grupo </label>
 				<s:property value="proyectoSel.grupo.nombre" />
 			</div>
 		</div>
@@ -83,17 +83,6 @@
 		<!-- BOTONES PARA CREAR DIAGRAMAS -->
 		<div class="form-group">
 			<div class="row">
-				<!-- BOTON CREAR NUEVO DIAGRAMA -->
-				<div class="outter-section form-medium text-center">
-					<div class="col-md-6">
-						<a
-							href="${pageContext.request.contextPath}/diagrama/visualizar-detalle-proyecto/new?idProyecto=${idProyecto}"
-							class="btn btn-grid"> <i class="material-icons"
-							style="font-size: 48px; color: white;">add_box</i> <br /> <label><s:text
-									name="Nuevo diagrama de casos de uso" /></label>
-						</a>
-					</div>
-				</div>
 				<!-- BOTON BOTON CREAR DIAGRAMA CLASES -->
 				<div class="outter-section form-medium text-center">
 					<div class="col-md-6">
@@ -102,64 +91,12 @@
 							class="btn btn-grid-second"> <!-- Icono check_circle --> <i
 							class="material-icons" style="font-size: 48px; color: white;">add_box</i>
 							<br /> <label><s:text name="Nuevo diagrama de clases" /></label>
-
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</s:if>
-
-	<fieldset class="form form-horizontal form-medium">
-		<legend class="form-section">
-			<label><s:property value="'Diagramas de casos de uso'" /></label>
-		</legend>
-		<table id="tblCasos" class="">
-			<thead>
-				<tr>
-					<th data-priority="1"><s:text name="Nombre del diagrama" /></th>
-					<th data-priority="2"><s:text name="" /></th>
-				</tr>
-			</thead>
-			<tbody>
-				<s:iterator value="listCasos" var="caso">
-					<tr>
-						<td><s:property value="#caso.nombre" /></td>
-						<s:if test="#usuario.perfil.id == #varAl">
-							<td>
-								<!-- Editar Diagrama --> <a
-								href="${pageContext.request.contextPath}/diagrama/caso-uso/${caso.id}/edit"
-								title="Editar última versión" class="btn btn-ttb020"> <i
-									class="material-icons">edit</i> <s:text name=" Editar" />
-							</a> <a
-								href="${pageContext.request.contextPath}/diagrama/gestionar-version?idDiagramaSel=${caso.id}"
-								title="Historial" class="btn btn-ttb020-second"> <i
-									class="material-icons">history</i> <s:text name=" Historial" />
-							</a> <a
-								href="${pageContext.request.contextPath}/diagrama/visualizar-comentario?idDiagrama=${caso.id}&amp;idProyecto=${idProyecto}"
-								title="Historial" class="btn btn-ttb020-third"> <i
-									class="material-icons">chat</i> <s:text name=" Comentarios" />
-							</a>
-							</td>
-						</s:if>
-						<s:else>
-							<td>
-								<!-- Editar Diagrama --> <a
-								href="${pageContext.request.contextPath}/diagrama/caso-uso/${caso.id}/edit"
-								title="Ver última versión" class="btn btn-ttb020"> <i
-									class="material-icons">remove_red_eye</i> <s:text name=" Ver" />
-							</a> <a
-								href="${pageContext.request.contextPath}/diagrama/visualizar-comentario?idDiagrama=${caso.id}&amp;idProyecto=${idProyecto}"
-								title="Comentarios" class="btn btn-ttb020-second"> <i
-									class="material-icons">chat</i> <s:text name=" Comentarios" />
-							</a>
-							</td>
-						</s:else>
-					</tr>
-				</s:iterator>
-			</tbody>
-		</table>
-	</fieldset>
 
 	<fieldset class="form form-horizontal form-medium">
 		<legend class="form-section">
