@@ -15,7 +15,7 @@
       
       <property name = "hibernate.connection.username">root</property>
       
-      <property name = "hibernate.connection.password">panky</property>
+      <property name = "hibernate.connection.password">rosegold</property>
       
       <property name = "hibernate.connection.pool_size">100</property>
       
