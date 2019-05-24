@@ -18,17 +18,19 @@
 <head>
 <jsp:text>
 	<![CDATA[
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin=""></script> 
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin=""></script> 
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin=""></script> 
+    
+    <script  type="text/babel" src="Test.jsx"></script>
 	]]>
 </jsp:text>
 
 </head>
 <body>
 	<!--Comienza el archivo-->
-
 	<div class="col-md-12">
-		<h1 class="title">
-			<s:text name="Bienvenido TT2017-B020"></s:text>
-		</h1>
+		<div id="test"></div>		
 	</div>
 
 	<div class="row form-group">
@@ -72,6 +74,8 @@
 				<s:submit cssClass="btn btn-ttb020"
 					value="Ingresar" />
 			</div>
+			
+			
 			<a class="btn btn-ttb020"
 				href="${pageContext.request.contextPath}/acceso/registrar-usuario/new"> <s:text
 					name="Registrate" />
