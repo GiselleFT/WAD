@@ -174,7 +174,7 @@
 				<label><s:property value="'Información del elemento'" /></label>
 			</legend>
 			<div id="inputPaquete" class="hidden">
-				<div class="form-group outter-section">
+				<div id="inputClaseInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Paquete" />
 					</label><input id="npaq" class="form-control campo" /> <br /> <a
@@ -183,7 +183,7 @@
 				</div>
 			</div>
 			<div id="inputClase" class="hidden">
-				<div class="form-group outter-section">
+				<div id="inputClaseInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Nombre de la Clase" />
 					</label> <input id="nclase" class="form-control campo" /><br /> <a
@@ -192,7 +192,7 @@
 				</div>
 			</div>
 			<div id="inputComponente" class="hidden">
-				<div class="form-group outter-section">
+				<div id="inputClaseInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Componente" />
 					</label> <input id="ncomp" class="form-control campo" /><br /> <a
@@ -201,7 +201,7 @@
 				</div>
 			</div>
 			<div id="inputAtributo" class="hidden">
-				<div class="form-group outter-section">
+				<div id="inputClaseInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Acceso" />
 					</label> <select id="access" class="form-control">
@@ -218,7 +218,7 @@
 				</div>
 			</div>
 			<div id="inputMetodo" class="hidden">
-				<div class="form-group outter-section">
+				<div id="inputClaseInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Acceso" />
 					</label> <select id="accessMet" class="form-control">

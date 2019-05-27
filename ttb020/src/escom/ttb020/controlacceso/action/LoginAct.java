@@ -2,6 +2,8 @@ package escom.ttb020.controlacceso.action;
 
 import javax.servlet.ServletContext;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
@@ -21,7 +23,7 @@ import escom.ttb020.util.SesionController;
 		@Result(name = "profesor", type = "redirectAction", params = { "actionName", "../profesor/gestionar-grupo" }),
 		@Result(name = "alumno", type = "redirectAction", params = { "actionName", "../alumno/gestionar-bienvenida" }) })
 public class LoginAct extends ActionSupport {
-
+	private static final Logger LOG = LogManager.getLogger(LoginAct.class);
 	/**
 	 * 
 	 */
@@ -83,6 +85,7 @@ public class LoginAct extends ActionSupport {
 	 * @return
 	 */
 	public String redireccionarPorPerfil(Usuario usuario) {
+		LOG.info("GISELLE ENTRÉ A LOGINACT");
 		if (usuario.getPerfil().getId() == PerfilUsuarioEnum.PROFESOR.getValor()) {
 			return "profesor";
 		} else {

@@ -40,6 +40,7 @@ function descubreComentario() {
 
 function descubreClase() {
 	document.getElementById("inputClase").classList.remove('hidden');
+    //document.getElementById("botonClase").classList.remove('hidden');
 	document.getElementById("inputAtributo").classList.add('hidden');
 	document.getElementById("inputMetodo").classList.add('hidden');
 	document.getElementById("inputPaquete").classList.add('hidden');

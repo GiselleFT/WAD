@@ -30,7 +30,8 @@
 <body>
 	<!--Comienza el archivo-->
 	<div class="col-md-12">
-		<div id="test"></div>		
+		<h1 class="title">Bienvenido TT2017-B020
+		</h1>	
 	</div>
 
 	<div class="row form-group">

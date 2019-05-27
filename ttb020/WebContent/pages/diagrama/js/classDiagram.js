@@ -137,7 +137,8 @@ window.onload = function() {
 				+ new Date().toLocaleString()
 				+ " ==> <font color='green'>Tip:</font> Se recomienda utilizar un <b>verbo fuerte</b> para nombrar los metodos de la clase y ordenarlos en orden descendente por su tipo de acceso.</p>");
 		var nclase = document.getElementById('nclase').value;
-		interaccionUnClick(f);
+        //interaccionUnClick(f);
+        dragAndDrop(f);
 	}
 
 	function crearComponente() {
@@ -502,7 +503,66 @@ window.onload = function() {
 			classDiagram.interaction(true);
 		}
 		div.onclick = funcionCaptura;
+    }
+
+    var dragAndDrop = function(funcion) {
+		classDiagram.interaction(false);
+		var div = document.getElementsByClassName('ud_diagram_div')[0];
+
+        var ele = document.getElementById("botonClase");
+        ele.onmousedown = function(event){
+            var mousex = event.pageX - div.offsetLeft;
+            var mousey = event.pageY - div.offsetTop;
+
+            ele.style.position = 'absolute';
+            //element.style.zIndex = 1000;
+            document.body.append(ele);
+
+            moveAt(event.pageX, event.pageY);
+            
+            //centra componente en las coordenadas
+            function moveAt(pageX, pageY){
+                ele.style.left = pageX - mousex + 'px';
+                ele.style.top = pageY - mousey + 'px';
+            }
+
+            function onMouseMove(event){
+                moveAt(event.pageX, event.pageY);
+            }
+
+            //mueve de acuerdo al mouse
+            document.addEventListener('mousemove', onMouseMove);
+            
+            //drop
+            ele.onmouseup = function(){
+                document.removeEventListener('mousemove', onMouseMove);
+                //ele.onmouseup = null;
+                ele.onmouseup = funcionCaptura;
+                ele.onclick = funcionCaptura;
+            };
+        };
+
+        ele.ondragstart = function(){
+            return false;
+        };
+        
+		var funcionCaptura = function(event) {
+			var mousex = event.pageX - div.offsetLeft;
+            var mousey = event.pageY - div.offsetTop;
+            
+			funcion(classDiagram, mousex, mousey);
+			div.onclick = false;
+			classDiagram.draw();
+			var elemento1 = classDiagram.getElementByPoint(mousex, mousey);
+			if (elemento1.getType() == "UMLClass")
+				$("#hdnClase").attr("value", elemento1.getName());
+			obtenerMetodos(elemento1.getName());
+			classDiagram.interaction(true);
+		}
+		//div.onclick = funcionCaptura;
 	}
+    
+    
 
 	var interactionDoubleClick = function(g) {
 		classDiagram.interaction(false);

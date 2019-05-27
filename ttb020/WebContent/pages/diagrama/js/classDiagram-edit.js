@@ -69,7 +69,8 @@ window.onload = function() {
 			}
 			cleanForm('npaq');
 		}
-		interaccionUnClick(f);
+		//interaccionUnClick(f);
+        dragAndDropPaquete(f);
 	}
 
 	function addAttribute() {
@@ -95,7 +96,8 @@ window.onload = function() {
 			cleanForm('tipoDato');
 			$('#access').get(0).selectedIndex = 0;
 		}
-		interaccionUnClickEnviar(f);
+		//interaccionUnClickEnviar(f);
+        dragAndDropAtributoEnviar(f);
 	}
 
 	function addOperation() {
@@ -124,11 +126,13 @@ window.onload = function() {
 			cleanForm('ret');
 			$('#accessMet').get(0).selectedIndex = 0;
 		}
-		interaccionUnClickEnviar(f);
+		//interaccionUnClickEnviar(f);
+        dragAndDropMetodoEnviar(f);
 	}
 
 	function crearClase() {
 		function f(classDiagram, a, b) {
+            var nclase = document.getElementById('nclase').value;
 			if (nclase == "") {
 				alert("Debes insertar un nombre para la clase");
 				return false;
@@ -138,7 +142,7 @@ window.onload = function() {
 					y : b
 				});
 				classDiagram.addElement(clase);
-				clase.setName(nclase);
+                clase.setName(nclase);
 			}
 			cleanForm('nclase');
 		}
@@ -152,7 +156,8 @@ window.onload = function() {
 				+ new Date().toLocaleString()
 				+ " ==> <font color='green'>Tip:</font> Se recomienda utilizar un <b>verbo fuerte</b> para nombrar los metodos de la clase y ordenarlos en orden descendente por su tipo de acceso.</p>");
 		var nclase = document.getElementById('nclase').value;
-		interaccionUnClick(f);
+		//interaccionUnClick(f);
+        dragAndDropClase(f);
 	}
 
 	function crearComponente() {
@@ -171,7 +176,8 @@ window.onload = function() {
 			}
 			cleanForm('ncomp');
 		}
-		interaccionUnClick(f);
+		//interaccionUnClick(f);
+        dragAndDropComponente(f);
 	}
 
 	function guardar() {
@@ -509,7 +515,438 @@ window.onload = function() {
 			classDiagram.interaction(true);
 		}
 		div.onclick = funcionCaptura;
+    }
+
+    var dragAndDropAtributoEnviar = function(funcion) {
+		classDiagram.interaction(false);
+        var row = document.getElementById("main");
+		var div = document.getElementsByClassName('ud_diagram_div')[0];
+        var ele = document.getElementById("botonAt");
+
+        var xInicial = 0;
+        var yInicial = 0;
+
+        ele.onmousedown = function(event){
+            var shiftX = event.clientX - ele.getBoundingClientRect().left;
+            var shiftY = event.clientY - ele.getBoundingClientRect().top;
+
+            //xInicial = 29.953125 , yInicial= 10.484375
+            xInicial = shiftX;
+            yInicial = shiftY;
+            
+            //console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
+
+            ele.style.position = 'absolute';
+            document.body.append(ele);
+
+            moveAt(event.pageX, event.pageY);
+            
+            //centra componente en las coordenadas
+            function moveAt(pageX, pageY){
+                ele.style.left = pageX - shiftX + 'px';
+                ele.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event){
+                moveAt(event.pageX, event.pageY);
+            }
+
+            //mueve de acuerdo al mouse
+            document.addEventListener('mousemove', onMouseMove);
+            
+            //drop
+            ele.onmouseup = function(){
+                document.removeEventListener('mousemove', onMouseMove);
+                var xFinal = event.pageX - shiftX + 'px';
+                var yFinal = event.pageY - shiftY + 'px';
+                console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
+                console.log("xFinal = " + xFinal + " , yFinal= " + yFinal);
+                ele.onclick = funcionCaptura(xFinal, yFinal);
+                
+                ele.style.position = "absolute";
+                ele.style.left = 50+'px';
+                ele.style.top = 560.484375+'px';
+                document.body.append(ele);
+                
+                ele.onmouseup = null;
+            };
+        };
+
+        ele.ondragstart = function(event){
+            return false;
+        };
+
+        var funcionCaptura = function(xFinal, yFinal) {
+			var mousex = event.pageX - div.offsetLeft;
+            var mousey = event.pageY - div.offsetTop;
+            
+            funcion(classDiagram, mousex, mousey);
+            ele.onclick = false;
+			//div.onclick = false;
+            //var nclase = document.getElementById('nclase').value;
+            console.log("funcionCaptura nclase= " + nclase);
+			classDiagram.draw();
+		}
+        
+        //Para regresar el boton al componente de clase y que no aparezca en otros componentes haciendo cualquier clic en la seccion main
+        var funcionClickDespues = function(event){
+            var dbotonAt = document.getElementById("botonAt");
+            var dbody = document.getElementsByTagName("BODY")[0];
+            dbody.removeChild(dbotonAt);
+            document.getElementById("inputClaseInside").appendChild(dbotonAt);
+        }
+        main.onclick = funcionClickDespues;
+        main.onclick = null;
+
 	}
+
+    var dragAndDropMetodoEnviar = function(funcion) {
+		classDiagram.interaction(false);
+        var row = document.getElementById("main");
+		var div = document.getElementsByClassName('ud_diagram_div')[0];
+        var ele = document.getElementById("botonMet");
+
+        var xInicial = 0;
+        var yInicial = 0;
+
+        ele.onmousedown = function(event){
+            var shiftX = event.clientX - ele.getBoundingClientRect().left;
+            var shiftY = event.clientY - ele.getBoundingClientRect().top;
+
+            //xInicial = 29.953125 , yInicial= 10.484375
+            xInicial = shiftX;
+            yInicial = shiftY;
+            
+            //console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
+
+            ele.style.position = 'absolute';
+            document.body.append(ele);
+
+            moveAt(event.pageX, event.pageY);
+            
+            //centra componente en las coordenadas
+            function moveAt(pageX, pageY){
+                ele.style.left = pageX - shiftX + 'px';
+                ele.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event){
+                moveAt(event.pageX, event.pageY);
+            }
+
+            //mueve de acuerdo al mouse
+            document.addEventListener('mousemove', onMouseMove);
+            
+            //drop
+            ele.onmouseup = function(){
+                document.removeEventListener('mousemove', onMouseMove);
+                var xFinal = event.pageX - shiftX + 'px';
+                var yFinal = event.pageY - shiftY + 'px';
+                console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
+                console.log("xFinal = " + xFinal + " , yFinal= " + yFinal);
+                ele.onclick = funcionCaptura(xFinal, yFinal);
+                
+                ele.style.position = "absolute";
+                ele.style.left = 50+'px';
+                ele.style.top = 630.484375+'px';
+                document.body.append(ele);
+                
+                ele.onmouseup = null;
+            };
+        };
+
+        ele.ondragstart = function(event){
+            return false;
+        };
+
+        var funcionCaptura = function(xFinal, yFinal) {
+			var mousex = event.pageX - div.offsetLeft;
+            var mousey = event.pageY - div.offsetTop;
+            
+            funcion(classDiagram, mousex, mousey);
+            ele.onclick = false;
+			//div.onclick = false;
+            //var nclase = document.getElementById('nclase').value;
+            console.log("funcionCaptura nclase= " + nclase);
+			classDiagram.draw();
+		}
+        
+        //Para regresar el boton al componente de clase y que no aparezca en otros componentes haciendo cualquier clic en la seccion main
+        var funcionClickDespues = function(event){
+            var dbotonMet = document.getElementById("botonMet");
+            var dbody = document.getElementsByTagName("BODY")[0];
+            dbody.removeChild(dbotonMet);
+            document.getElementById("inputClaseInside").appendChild(dbotonMet);
+        }
+        main.onclick = funcionClickDespues;
+        main.onclick = null;
+
+	}
+    
+    var dragAndDropClase = function(funcion) {
+		classDiagram.interaction(false);
+        var row = document.getElementById("main");
+		var div = document.getElementsByClassName('ud_diagram_div')[0];
+        var ele = document.getElementById("botonClase");
+        var xInicial = 0;
+        var yInicial = 0;
+
+        
+        ele.onmousedown = function(event){
+            var shiftX = event.clientX - ele.getBoundingClientRect().left;
+            var shiftY = event.clientY - ele.getBoundingClientRect().top;
+
+            //xInicial = 29.953125 , yInicial= 10.484375
+            xInicial = shiftX;
+            yInicial = shiftY;
+            
+            //console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
+
+            ele.style.position = 'absolute';
+            document.body.append(ele);
+
+            moveAt(event.pageX, event.pageY);
+            
+            //centra componente en las coordenadas
+            function moveAt(pageX, pageY){
+                ele.style.left = pageX - shiftX + 'px';
+                ele.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event){
+                moveAt(event.pageX, event.pageY);
+            }
+
+            //mueve de acuerdo al mouse
+            document.addEventListener('mousemove', onMouseMove);
+            
+            //drop
+            ele.onmouseup = function(){
+                document.removeEventListener('mousemove', onMouseMove);
+                var xFinal = event.pageX - shiftX + 'px';
+                var yFinal = event.pageY - shiftY + 'px';
+                console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
+                console.log("xFinal = " + xFinal + " , yFinal= " + yFinal);
+                ele.onclick = funcionCaptura(xFinal, yFinal);
+                
+                ele.style.position = "absolute";
+                ele.style.left = 50+'px';
+                ele.style.top = 480.484375+'px';
+                document.body.append(ele);
+                
+                ele.onmouseup = null;
+            };
+        };
+
+        ele.ondragstart = function(event){
+            return false;
+        };
+
+        
+		var funcionCaptura = function(xFinal, yFinal) {
+			var mousex = event.pageX - div.offsetLeft;
+            var mousey = event.pageY - div.offsetTop;
+            
+            funcion(classDiagram, mousex, mousey);
+            ele.onclick = false;
+			//div.onclick = false;
+            //var nclase = document.getElementById('nclase').value;
+            console.log("funcionCaptura nclase= " + nclase);
+			classDiagram.draw();
+			var elemento1 = classDiagram.getElementByPoint(mousex, mousey);
+            console.log("elemento1 = " + elemento1.getName());
+			if (elemento1.getType() == "UMLClass")
+				$("#hdnClase").attr("value", elemento1.getName());
+			obtenerMetodos(elemento1.getName());
+			classDiagram.interaction(true);
+		}
+        
+        //Para regresar el boton al componente de clase y que no aparezca en otros componentes haciendo cualquier clic en la seccion main
+        var funcionClickDespues = function(event){
+            var dbotonClase = document.getElementById("botonClase");
+            var dbody = document.getElementsByTagName("BODY")[0];
+            dbody.removeChild(dbotonClase);
+            document.getElementById("inputClaseInside").appendChild(dbotonClase);
+        }
+        main.onclick = funcionClickDespues;
+    }
+
+
+    var dragAndDropPaquete = function(funcion) {
+		classDiagram.interaction(false);
+        var row = document.getElementById("main");
+		var div = document.getElementsByClassName('ud_diagram_div')[0];
+        var ele = document.getElementById("botonPaq");
+        var xInicial = 0;
+        var yInicial = 0;
+
+        
+        ele.onmousedown = function(event){
+            var shiftX = event.clientX - ele.getBoundingClientRect().left;
+            var shiftY = event.clientY - ele.getBoundingClientRect().top;
+
+            //xInicial = 29.953125 , yInicial= 10.484375
+            xInicial = shiftX;
+            yInicial = shiftY;
+            
+            //console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
+
+            ele.style.position = 'absolute';
+            document.body.append(ele);
+
+            moveAt(event.pageX, event.pageY);
+            
+            //centra componente en las coordenadas
+            function moveAt(pageX, pageY){
+                ele.style.left = pageX - shiftX + 'px';
+                ele.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event){
+                moveAt(event.pageX, event.pageY);
+            }
+
+            //mueve de acuerdo al mouse
+            document.addEventListener('mousemove', onMouseMove);
+            
+            //drop
+            ele.onmouseup = function(){
+                document.removeEventListener('mousemove', onMouseMove);
+                var xFinal = event.pageX - shiftX + 'px';
+                var yFinal = event.pageY - shiftY + 'px';
+                console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
+                console.log("xFinal = " + xFinal + " , yFinal= " + yFinal);
+                ele.onclick = funcionCaptura(xFinal, yFinal);
+                
+                ele.style.position = "absolute";
+                ele.style.left = 50+'px';
+                ele.style.top = 480.484375+'px';
+                document.body.append(ele);
+                
+                ele.onmouseup = null;
+            };
+        };
+
+        ele.ondragstart = function(event){
+            return false;
+        };
+
+        
+		var funcionCaptura = function(xFinal, yFinal) {
+			var mousex = event.pageX - div.offsetLeft;
+            var mousey = event.pageY - div.offsetTop;
+            
+            funcion(classDiagram, mousex, mousey);
+            ele.onclick = false;
+			//div.onclick = false;
+            //var nclase = document.getElementById('nclase').value;
+            console.log("funcionCaptura nclase= " + nclase);
+			classDiagram.draw();
+			var elemento1 = classDiagram.getElementByPoint(mousex, mousey);
+            console.log("elemento1 = " + elemento1.getName());
+			if (elemento1.getType() == "UMLClass")
+				$("#hdnClase").attr("value", elemento1.getName());
+			obtenerMetodos(elemento1.getName());
+			classDiagram.interaction(true);
+		}
+        
+        //Para regresar el boton al componente de clase y que no aparezca en otros componentes haciendo cualquier clic en la seccion main
+        var funcionClickDespues = function(event){
+            var dbotonPaq = document.getElementById("botonPaq");
+            var dbody = document.getElementsByTagName("BODY")[0];
+            dbody.removeChild(dbotonPaq);
+            document.getElementById("inputClaseInside").appendChild(dbotonPaq);
+        }
+        main.onclick = funcionClickDespues;
+    }
+
+    var dragAndDropComponente = function(funcion) {
+		classDiagram.interaction(false);
+        var row = document.getElementById("main");
+		var div = document.getElementsByClassName('ud_diagram_div')[0];
+        var ele = document.getElementById("botonComp");
+        var xInicial = 0;
+        var yInicial = 0;
+
+        
+        ele.onmousedown = function(event){
+            var shiftX = event.clientX - ele.getBoundingClientRect().left;
+            var shiftY = event.clientY - ele.getBoundingClientRect().top;
+
+            //xInicial = 29.953125 , yInicial= 10.484375
+            xInicial = shiftX;
+            yInicial = shiftY;
+            
+            //console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
+
+            ele.style.position = 'absolute';
+            document.body.append(ele);
+
+            moveAt(event.pageX, event.pageY);
+            
+            //centra componente en las coordenadas
+            function moveAt(pageX, pageY){
+                ele.style.left = pageX - shiftX + 'px';
+                ele.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event){
+                moveAt(event.pageX, event.pageY);
+            }
+
+            //mueve de acuerdo al mouse
+            document.addEventListener('mousemove', onMouseMove);
+            
+            //drop
+            ele.onmouseup = function(){
+                document.removeEventListener('mousemove', onMouseMove);
+                var xFinal = event.pageX - shiftX + 'px';
+                var yFinal = event.pageY - shiftY + 'px';
+                console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
+                console.log("xFinal = " + xFinal + " , yFinal= " + yFinal);
+                ele.onclick = funcionCaptura(xFinal, yFinal);
+                
+                ele.style.position = "absolute";
+                ele.style.left = 30+'px';
+                ele.style.top = 465.484375+'px';
+                document.body.append(ele);
+                
+                ele.onmouseup = null;
+            };
+        };
+
+        ele.ondragstart = function(event){
+            return false;
+        };
+
+        
+		var funcionCaptura = function(xFinal, yFinal) {
+			var mousex = event.pageX - div.offsetLeft;
+            var mousey = event.pageY - div.offsetTop;
+            
+            funcion(classDiagram, mousex, mousey);
+            ele.onclick = false;
+			//div.onclick = false;
+            //var nclase = document.getElementById('nclase').value;
+            console.log("funcionCaptura nclase= " + nclase);
+			classDiagram.draw();
+			var elemento1 = classDiagram.getElementByPoint(mousex, mousey);
+            console.log("elemento1 = " + elemento1.getName());
+			if (elemento1.getType() == "UMLClass")
+				$("#hdnClase").attr("value", elemento1.getName());
+			obtenerMetodos(elemento1.getName());
+			classDiagram.interaction(true);
+		}
+        
+        //Para regresar el boton al componente de clase y que no aparezca en otros componentes haciendo cualquier clic en la seccion main
+        var funcionClickDespues = function(event){
+            var dbotonComp = document.getElementById("botonComp");
+            var dbody = document.getElementsByTagName("BODY")[0];
+            dbody.removeChild(dbotonComp);
+            document.getElementById("inputClaseInside").appendChild(dbotonComp);
+        }
+        main.onclick = funcionClickDespues;
+    }
 
 	var interactionDoubleClick = function(g) {
 		classDiagram.interaction(false);

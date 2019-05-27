@@ -115,7 +115,7 @@
 							name="Nombre de la Clase" />
 					</label> <input id="nclase" class="form-control campo" /><br /> <a
 						class="btn btn-ttb020" role="button"
-						id="botonClase">Clase</a>
+						id="botonClase" >ClaseA</a>
 				</div>
 			</div>
 			<div id="inputComponente" class="hidden">
