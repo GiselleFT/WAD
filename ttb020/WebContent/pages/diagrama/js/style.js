@@ -27,14 +27,14 @@ var css = "* {" +
 
 ".secondcolumn {" +
 "    float: left;" +
-"    width:" + (ancho*0.7) + "px;" +
+"    width:" + (ancho*0.15) + "px;" +
 "    padding: 1%;" +
 "    height:" + (alto*0.75) + "px;" +
 "}" +
 
 ".thirdcolumn {" +
 "    float: left;" +
-"    width:" + (ancho*0.155) + "px;" +
+"    width:" + (ancho*0.7) + "px;" +
 "    padding: 1%;" +
 "    height:" + (alto*0.75) + "px;" +
 "}" +

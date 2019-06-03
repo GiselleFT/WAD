@@ -35,20 +35,31 @@
 	<s:set var="usuario"
 		value="%{#session['session_user']}" />
 	<s:hidden id="hdnXML" name="data" value="%{version.data}"></s:hidden>
-	<div class="btn-group outter-section" role="group"
+	
+	<div class="row">
+		<div class="firstcolumn" role="group"
 		aria-label="Basic example">
 		<s:if test="#usuario.perfil.id == #varAl">
 			<button type="button" class="btn btn-secondary"
-				onClick="descubreClase()" style="background-color: black;">
-				<label style="color: white;"><s:property value="'Clase'" /></label>
+				onClick="descubreClase()" style="background-color: white;">
+				<label style="color: black;"><s:property value="'Clase'" /></label>
 			</button>
 			<button type="button" onClick="descubreAtributo()"
-				class="btn btn-secondary" style="background-color: black;">
-				<label style="color: white;"><s:property value="'Atributo'" /></label>
+				class="btn btn-secondary" style="background-color: white;">
+				<label style="color: black;"><s:property value="'Atributo'" /></label>
 			</button>
 			<button type="button" onClick="descubreMetodo()"
-				class="btn btn-secondary" style="background-color: black;">
-				<label style="color: white;"><s:property value="'Método'" /></label>
+				class="btn btn-secondary" style="background-color: white;">
+				<label style="color: black;"><s:property value="'Método'" /></label>
+			</button>
+			<button type="button" onClick="descubreComponente()"
+				class="btn btn-secondary" style="background-color: white;">
+				<label style="color: black;"><s:property
+						value="'Componente'" /></label>
+			</button>
+			<button type="button" class="btn btn-secondary"
+				onClick="descubrePaquete()" style="background-color: white;">
+				<label style="color: black;"><s:property value="'Paquete'" /></label>
 			</button>
 			
 			<input id="botonGen" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/herencia.png" width="100" height="37" />
@@ -56,28 +67,19 @@
 			<input id="botonAg" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/agregacion.png" width="100" height="37" />
 			<input id="botonComposicion" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/composicion.png" width="100" height="37" />
 			<input id="botonDep" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/dependencia.png" width="100" height="37" />
-
-			<button type="button" onClick="descubreComponente()"
-				class="btn btn-secondary" style="background-color: black;">
-				<label style="color: white;"><s:property
-						value="'Componente'" /></label>
-			</button>
-			<button type="button" class="btn btn-secondary"
-				onClick="descubrePaquete()" style="background-color: black;">
-				<label style="color: white;"><s:property value="'Paquete'" /></label>
-			</button>
+			
 			<button type="button" id="botonGuardar" class="btn btn-secondary"
-				style="background-color: black;">
-				<label style="color: white;"><s:property value="'Guardar'" /></label>
+				style="background-color: white;">
+				<label style="color: black;"><s:property value="'Guardar'" /></label>
 			</button>
 			<button type="button" onClick="descubreComentario()"
-				class="btn btn-secondary" style="background-color: black;">
-				<label style="color: white;"><s:property
+				class="btn btn-secondary" style="background-color: white;">
+				<label style="color: black;"><s:property
 						value="'Comentario'" /></label>
 			</button>
 			<button type="button" id="botonBorrar" class="btn btn-secondary"
-				style="background-color: black;">
-				<label style="color: white;"><s:property value="'Borrar'" /></label>
+				style="background-color: white;">
+				<label style="color: black;"><s:property value="'Borrar'" /></label>
 			</button>
 		</s:if>
 		<s:else>
@@ -145,12 +147,13 @@
 				<label style="color: white;"><s:property value="'Borrar'" /></label>
 			</button>
 		</s:else>
-	</div>
-	<div class="row">
-		<fieldset class="firstcolumn" style="background-color: #ffffff;">
-			<legend class="form-section">
+		</div>
+	
+		<legend class="form-section">
 				<label><s:property value="'Información del elemento'" /></label>
 			</legend>
+		<fieldset class="secondcolumn" style="background-color: #f8f8f8;">
+			
 			<div id="inputPaquete" class="hidden">
 				<div id="inputPaqueteInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
