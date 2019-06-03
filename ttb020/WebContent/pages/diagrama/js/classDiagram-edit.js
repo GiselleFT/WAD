@@ -131,7 +131,7 @@ window.onload = function() {
 	}
 
 	function crearClase() {
-		function f(classDiagram, a, b) {
+        function f(classDiagram, a, b) {
             var nclase = document.getElementById('nclase').value;
 			if (nclase == "") {
 				alert("Debes insertar un nombre para la clase");
@@ -519,23 +519,17 @@ window.onload = function() {
 
     var dragAndDropAtributoEnviar = function(funcion) {
 		classDiagram.interaction(false);
-        var row = document.getElementById("main");
 		var div = document.getElementsByClassName('ud_diagram_div')[0];
         var ele = document.getElementById("botonAt");
-
-        var xInicial = 0;
-        var yInicial = 0;
+        //var posX = originalPosition.left + window.scrollX;
+        //var posY = originalPosition.top + window.scrollY;
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
 
         ele.onmousedown = function(event){
             var shiftX = event.clientX - ele.getBoundingClientRect().left;
             var shiftY = event.clientY - ele.getBoundingClientRect().top;
-
-            //xInicial = 29.953125 , yInicial= 10.484375
-            xInicial = shiftX;
-            yInicial = shiftY;
             
-            //console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
-
             ele.style.position = 'absolute';
             document.body.append(ele);
 
@@ -557,17 +551,11 @@ window.onload = function() {
             //drop
             ele.onmouseup = function(){
                 document.removeEventListener('mousemove', onMouseMove);
-                var xFinal = event.pageX - shiftX + 'px';
-                var yFinal = event.pageY - shiftY + 'px';
-                console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
-                console.log("xFinal = " + xFinal + " , yFinal= " + yFinal);
-                ele.onclick = funcionCaptura(xFinal, yFinal);
-                
+                ele.onclick = funcionCaptura();
                 ele.style.position = "absolute";
-                ele.style.left = 50+'px';
-                ele.style.top = 560.484375+'px';
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
                 document.body.append(ele);
-                
                 ele.onmouseup = null;
             };
         };
@@ -576,16 +564,13 @@ window.onload = function() {
             return false;
         };
 
-        var funcionCaptura = function(xFinal, yFinal) {
+        var funcionCaptura = function() {
 			var mousex = event.pageX - div.offsetLeft;
             var mousey = event.pageY - div.offsetTop;
-            
             funcion(classDiagram, mousex, mousey);
             ele.onclick = false;
-			//div.onclick = false;
-            //var nclase = document.getElementById('nclase').value;
-            console.log("funcionCaptura nclase= " + nclase);
-			classDiagram.draw();
+            classDiagram.draw();
+            //classDiagram.interaction(true);
 		}
         
         //Para regresar el boton al componente de clase y que no aparezca en otros componentes haciendo cualquier clic en la seccion main
@@ -593,32 +578,24 @@ window.onload = function() {
             var dbotonAt = document.getElementById("botonAt");
             var dbody = document.getElementsByTagName("BODY")[0];
             dbody.removeChild(dbotonAt);
-            document.getElementById("inputClaseInside").appendChild(dbotonAt);
+            document.getElementById("inputAtributoInside").appendChild(dbotonAt);
         }
         main.onclick = funcionClickDespues;
-        main.onclick = null;
-
+        //main.onclick = null;
 	}
 
     var dragAndDropMetodoEnviar = function(funcion) {
 		classDiagram.interaction(false);
-        var row = document.getElementById("main");
 		var div = document.getElementsByClassName('ud_diagram_div')[0];
         var ele = document.getElementById("botonMet");
-
-        var xInicial = 0;
-        var yInicial = 0;
+        //var posX = originalPosition.left + window.scrollX;
+        //var posY = originalPosition.top + window.scrollY;
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
 
         ele.onmousedown = function(event){
             var shiftX = event.clientX - ele.getBoundingClientRect().left;
             var shiftY = event.clientY - ele.getBoundingClientRect().top;
-
-            //xInicial = 29.953125 , yInicial= 10.484375
-            xInicial = shiftX;
-            yInicial = shiftY;
-            
-            //console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
-
             ele.style.position = 'absolute';
             document.body.append(ele);
 
@@ -640,17 +617,11 @@ window.onload = function() {
             //drop
             ele.onmouseup = function(){
                 document.removeEventListener('mousemove', onMouseMove);
-                var xFinal = event.pageX - shiftX + 'px';
-                var yFinal = event.pageY - shiftY + 'px';
-                console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
-                console.log("xFinal = " + xFinal + " , yFinal= " + yFinal);
-                ele.onclick = funcionCaptura(xFinal, yFinal);
-                
+                ele.onclick = funcionCaptura();
                 ele.style.position = "absolute";
-                ele.style.left = 50+'px';
-                ele.style.top = 630.484375+'px';
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
                 document.body.append(ele);
-                
                 ele.onmouseup = null;
             };
         };
@@ -659,15 +630,11 @@ window.onload = function() {
             return false;
         };
 
-        var funcionCaptura = function(xFinal, yFinal) {
+        var funcionCaptura = function() {
 			var mousex = event.pageX - div.offsetLeft;
             var mousey = event.pageY - div.offsetTop;
-            
             funcion(classDiagram, mousex, mousey);
             ele.onclick = false;
-			//div.onclick = false;
-            //var nclase = document.getElementById('nclase').value;
-            console.log("funcionCaptura nclase= " + nclase);
 			classDiagram.draw();
 		}
         
@@ -676,31 +643,26 @@ window.onload = function() {
             var dbotonMet = document.getElementById("botonMet");
             var dbody = document.getElementsByTagName("BODY")[0];
             dbody.removeChild(dbotonMet);
-            document.getElementById("inputClaseInside").appendChild(dbotonMet);
+            document.getElementById("inputMetodoInside").appendChild(dbotonMet);
         }
         main.onclick = funcionClickDespues;
-        main.onclick = null;
-
+        //main.onclick = null;
 	}
     
     var dragAndDropClase = function(funcion) {
 		classDiagram.interaction(false);
-        var row = document.getElementById("main");
 		var div = document.getElementsByClassName('ud_diagram_div')[0];
         var ele = document.getElementById("botonClase");
-        var xInicial = 0;
-        var yInicial = 0;
 
-        
+        var originalPosition = ele.getBoundingClientRect();
+        //var posX = originalPosition.left + window.scrollX;
+        //var posY = originalPosition.top + window.scrollY;
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
         ele.onmousedown = function(event){
             var shiftX = event.clientX - ele.getBoundingClientRect().left;
             var shiftY = event.clientY - ele.getBoundingClientRect().top;
-
-            //xInicial = 29.953125 , yInicial= 10.484375
-            xInicial = shiftX;
-            yInicial = shiftY;
-            
-            //console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
 
             ele.style.position = 'absolute';
             document.body.append(ele);
@@ -723,17 +685,11 @@ window.onload = function() {
             //drop
             ele.onmouseup = function(){
                 document.removeEventListener('mousemove', onMouseMove);
-                var xFinal = event.pageX - shiftX + 'px';
-                var yFinal = event.pageY - shiftY + 'px';
-                console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
-                console.log("xFinal = " + xFinal + " , yFinal= " + yFinal);
-                ele.onclick = funcionCaptura(xFinal, yFinal);
-                
+                ele.onclick = funcionCaptura();
                 ele.style.position = "absolute";
-                ele.style.left = 50+'px';
-                ele.style.top = 480.484375+'px';
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
                 document.body.append(ele);
-                
                 ele.onmouseup = null;
             };
         };
@@ -743,18 +699,13 @@ window.onload = function() {
         };
 
         
-		var funcionCaptura = function(xFinal, yFinal) {
+		var funcionCaptura = function() {
 			var mousex = event.pageX - div.offsetLeft;
             var mousey = event.pageY - div.offsetTop;
-            
             funcion(classDiagram, mousex, mousey);
             ele.onclick = false;
-			//div.onclick = false;
-            //var nclase = document.getElementById('nclase').value;
-            console.log("funcionCaptura nclase= " + nclase);
 			classDiagram.draw();
 			var elemento1 = classDiagram.getElementByPoint(mousex, mousey);
-            console.log("elemento1 = " + elemento1.getName());
 			if (elemento1.getType() == "UMLClass")
 				$("#hdnClase").attr("value", elemento1.getName());
 			obtenerMetodos(elemento1.getName());
@@ -774,26 +725,20 @@ window.onload = function() {
 
     var dragAndDropPaquete = function(funcion) {
 		classDiagram.interaction(false);
-        var row = document.getElementById("main");
 		var div = document.getElementsByClassName('ud_diagram_div')[0];
         var ele = document.getElementById("botonPaq");
-        var xInicial = 0;
-        var yInicial = 0;
+        var originalPosition = ele.getBoundingClientRect();
+        //var posX = originalPosition.left + window.scrollX;
+        //var posY = originalPosition.top + window.scrollY;
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+        console.log("En draganddrop: posX = " + posX + " , posY= " + posY);
 
-        
         ele.onmousedown = function(event){
             var shiftX = event.clientX - ele.getBoundingClientRect().left;
             var shiftY = event.clientY - ele.getBoundingClientRect().top;
-
-            //xInicial = 29.953125 , yInicial= 10.484375
-            xInicial = shiftX;
-            yInicial = shiftY;
-            
-            //console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
-
             ele.style.position = 'absolute';
             document.body.append(ele);
-
             moveAt(event.pageX, event.pageY);
             
             //centra componente en las coordenadas
@@ -812,17 +757,11 @@ window.onload = function() {
             //drop
             ele.onmouseup = function(){
                 document.removeEventListener('mousemove', onMouseMove);
-                var xFinal = event.pageX - shiftX + 'px';
-                var yFinal = event.pageY - shiftY + 'px';
-                console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
-                console.log("xFinal = " + xFinal + " , yFinal= " + yFinal);
-                ele.onclick = funcionCaptura(xFinal, yFinal);
-                
+                ele.onclick = funcionCaptura();
                 ele.style.position = "absolute";
-                ele.style.left = 50+'px';
-                ele.style.top = 480.484375+'px';
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
                 document.body.append(ele);
-                
                 ele.onmouseup = null;
             };
         };
@@ -832,15 +771,12 @@ window.onload = function() {
         };
 
         
-		var funcionCaptura = function(xFinal, yFinal) {
+		var funcionCaptura = function() {
 			var mousex = event.pageX - div.offsetLeft;
             var mousey = event.pageY - div.offsetTop;
             
             funcion(classDiagram, mousex, mousey);
             ele.onclick = false;
-			//div.onclick = false;
-            //var nclase = document.getElementById('nclase').value;
-            console.log("funcionCaptura nclase= " + nclase);
 			classDiagram.draw();
 			var elemento1 = classDiagram.getElementByPoint(mousex, mousey);
             console.log("elemento1 = " + elemento1.getName());
@@ -855,35 +791,27 @@ window.onload = function() {
             var dbotonPaq = document.getElementById("botonPaq");
             var dbody = document.getElementsByTagName("BODY")[0];
             dbody.removeChild(dbotonPaq);
-            document.getElementById("inputClaseInside").appendChild(dbotonPaq);
+            document.getElementById("inputPaqueteInside").appendChild(dbotonPaq);
         }
         main.onclick = funcionClickDespues;
     }
 
     var dragAndDropComponente = function(funcion) {
 		classDiagram.interaction(false);
-        var row = document.getElementById("main");
 		var div = document.getElementsByClassName('ud_diagram_div')[0];
         var ele = document.getElementById("botonComp");
-        var xInicial = 0;
-        var yInicial = 0;
+        //var posX = originalPosition.left + window.scrollX;
+        //var posY = originalPosition.top + window.scrollY;
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
 
-        
         ele.onmousedown = function(event){
             var shiftX = event.clientX - ele.getBoundingClientRect().left;
             var shiftY = event.clientY - ele.getBoundingClientRect().top;
-
-            //xInicial = 29.953125 , yInicial= 10.484375
-            xInicial = shiftX;
-            yInicial = shiftY;
-            
-            //console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
-
             ele.style.position = 'absolute';
             document.body.append(ele);
-
             moveAt(event.pageX, event.pageY);
-            
+    
             //centra componente en las coordenadas
             function moveAt(pageX, pageY){
                 ele.style.left = pageX - shiftX + 'px';
@@ -900,17 +828,11 @@ window.onload = function() {
             //drop
             ele.onmouseup = function(){
                 document.removeEventListener('mousemove', onMouseMove);
-                var xFinal = event.pageX - shiftX + 'px';
-                var yFinal = event.pageY - shiftY + 'px';
-                console.log("xInicial = " + xInicial + " , yInicial= " + yInicial);
-                console.log("xFinal = " + xFinal + " , yFinal= " + yFinal);
-                ele.onclick = funcionCaptura(xFinal, yFinal);
-                
+                ele.onclick = funcionCaptura();
                 ele.style.position = "absolute";
-                ele.style.left = 30+'px';
-                ele.style.top = 465.484375+'px';
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
                 document.body.append(ele);
-                
                 ele.onmouseup = null;
             };
         };
@@ -919,19 +841,13 @@ window.onload = function() {
             return false;
         };
 
-        
-		var funcionCaptura = function(xFinal, yFinal) {
+		var funcionCaptura = function() {
 			var mousex = event.pageX - div.offsetLeft;
             var mousey = event.pageY - div.offsetTop;
-            
             funcion(classDiagram, mousex, mousey);
             ele.onclick = false;
-			//div.onclick = false;
-            //var nclase = document.getElementById('nclase').value;
-            console.log("funcionCaptura nclase= " + nclase);
 			classDiagram.draw();
 			var elemento1 = classDiagram.getElementByPoint(mousex, mousey);
-            console.log("elemento1 = " + elemento1.getName());
 			if (elemento1.getType() == "UMLClass")
 				$("#hdnClase").attr("value", elemento1.getName());
 			obtenerMetodos(elemento1.getName());
@@ -943,7 +859,7 @@ window.onload = function() {
             var dbotonComp = document.getElementById("botonComp");
             var dbody = document.getElementsByTagName("BODY")[0];
             dbody.removeChild(dbotonComp);
-            document.getElementById("inputClaseInside").appendChild(dbotonComp);
+            document.getElementById("inputComponenteInside").appendChild(dbotonComp);
         }
         main.onclick = funcionClickDespues;
     }

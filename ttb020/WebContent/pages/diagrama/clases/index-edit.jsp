@@ -50,35 +50,13 @@
 				class="btn btn-secondary" style="background-color: black;">
 				<label style="color: white;"><s:property value="'Método'" /></label>
 			</button>
-			<button type="button" id="botonGen" class="btn btn-secondary"
-				style="background-color: black;">
-				<label style="color: white;"><s:property value="'Herencia'" /></label>
-			</button>
-			<button type="button" id="botonGen" class="btn btn-secondary"
-				style="background-color: black;">
-				<label style="color: white;"><s:property
-						value="'Generalización'" /></label>
-			</button>
-			<button type="button" id="botonAs" class="btn btn-secondary"
-				style="background-color: black;">
-				<label style="color: white;"><s:property
-						value="'Asociación'" /></label>
-			</button>
-			<button type="button" id="botonAg" class="btn btn-secondary"
-				style="background-color: black;">
-				<label style="color: white;"><s:property
-						value="'Agregación'" /></label>
-			</button>
-			<button type="button" id="botonComposicion" class="btn btn-secondary"
-				style="background-color: black;">
-				<label style="color: white;"><s:property
-						value="'Composición'" /></label>
-			</button>
-			<button type="button" id="botonDep" class="btn btn-secondary"
-				style="background-color: black;">
-				<label style="color: white;"><s:property
-						value="'Dependencia'" /></label>
-			</button>
+			
+			<input id="botonGen" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/herencia.png" width="100" height="37" />
+			<input id="botonAs" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/asociacion.png" width="100" height="37" />
+			<input id="botonAg" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/agregacion.png" width="100" height="37" />
+			<input id="botonComposicion" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/composicion.png" width="100" height="37" />
+			<input id="botonDep" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/dependencia.png" width="100" height="37" />
+
 			<button type="button" onClick="descubreComponente()"
 				class="btn btn-secondary" style="background-color: black;">
 				<label style="color: white;"><s:property
@@ -174,34 +152,32 @@
 				<label><s:property value="'Información del elemento'" /></label>
 			</legend>
 			<div id="inputPaquete" class="hidden">
-				<div id="inputClaseInside" class="form-group outter-section">
+				<div id="inputPaqueteInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Paquete" />
-					</label><input id="npaq" class="form-control campo" /> <br /> <a
-						class="btn btn-ttb020" role="button"
-						id="botonPaq">Paquete</a>
+					</label><input id="npaq" class="form-control campo" /> <br /> 
+					<!--  <a class="btn btn-ttb020" role="button" id="botonPaq">Paquete</a> -->
+					<input id="botonPaq" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/paquete.png" width="90" height="80" />
 				</div>
 			</div>
 			<div id="inputClase" class="hidden">
 				<div id="inputClaseInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Nombre de la Clase" />
-					</label> <input id="nclase" class="form-control campo" /><br /> <a
-						class="btn btn-ttb020" role="button"
-						id="botonClase">Clase</a>
+					</label> <input id="nclase" class="form-control campo" /><br /> 
+					<input id="botonClase" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/clase.png" width="110" height="80" />
 				</div>
 			</div>
 			<div id="inputComponente" class="hidden">
-				<div id="inputClaseInside" class="form-group outter-section">
+				<div id="inputComponenteInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Componente" />
-					</label> <input id="ncomp" class="form-control campo" /><br /> <a
-						class="btn btn-ttb020" role="button"
-						id="botonComp">Componente</a>
+					</label> <input id="ncomp" class="form-control campo" /><br /> 
+					<input id="botonComp" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/componente.png" width="120" height="90" />
 				</div>
 			</div>
 			<div id="inputAtributo" class="hidden">
-				<div id="inputClaseInside" class="form-group outter-section">
+				<div id="inputAtributoInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Acceso" />
 					</label> <select id="access" class="form-control">
@@ -213,12 +189,12 @@
 					</label> <input id="nat" class="form-control campo" value="atributo" /> <label
 						class="control-label label-obligatorio"> <s:text
 							name="Tipo de dato" />
-					</label> <input id="tipoDato" class="form-control campo" /> <br /> <a
-						class="btn btn-ttb020" role="button" id="botonAt">Atributo</a>
+					</label> <input id="tipoDato" class="form-control campo" /> <br /> 
+					<input id="botonAt" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/atributo.png" width="110" height="80" />
 				</div>
 			</div>
 			<div id="inputMetodo" class="hidden">
-				<div id="inputClaseInside" class="form-group outter-section">
+				<div id="inputMetodoInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Acceso" />
 					</label> <select id="accessMet" class="form-control">
@@ -231,9 +207,8 @@
 						class="control-label"> <s:text name="Parametros" />
 					</label> <input id="param" class="form-control campo" /> <label
 						class="control-label"> <s:text name="Return" />
-					</label> <input id="ret" class="form-control campo" /> <br /> <a
-						class="btn btn-ttb020" role="button"
-						id="botonMet">Método</a>
+					</label> <input id="ret" class="form-control campo" /> <br /> 
+					<input id="botonMet" type="image" src="${pageContext.request.contextPath}/pages/diagrama/clases/metodo.png" width="110" height="80" />
 				</div>
 			</div>
 			<div id="inputComentario" class="hidden">
