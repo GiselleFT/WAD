@@ -37,6 +37,7 @@
 	<s:hidden id="hdnXML" name="data" value="%{version.data}"></s:hidden>
 	
 	<div class="row">
+	
 		<div class="firstcolumn" role="group"
 		aria-label="Basic example">
 		<s:if test="#usuario.perfil.id == #varAl">
@@ -81,6 +82,11 @@
 				style="background-color: white;">
 				<label style="color: black;"><s:property value="'Borrar'" /></label>
 			</button>
+			<a class="btn btn-ttb020"
+					href="${pageContext.request.contextPath}/alumno/gestionar-bienvenida">
+					<s:text name="Regresar" />
+			</a>
+			
 		</s:if>
 		<s:else>
 			<button type="button" class="hidden btn btn-secondary"
@@ -146,6 +152,10 @@
 				class="hidden btn btn-secondary" style="background-color: black;">
 				<label style="color: white;"><s:property value="'Borrar'" /></label>
 			</button>
+			<a class="btn btn-ttb020"
+					href="${pageContext.request.contextPath}/profesor/gestionar-grupo">
+					<s:text name="Regresar" />
+			</a>
 		</s:else>
 		</div>
 	
