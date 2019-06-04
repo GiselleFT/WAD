@@ -54,10 +54,16 @@ window.onload = function() {
 	classDiagram.interaction(true);
 
 	function crearPaquete() {
+        var ele = document.getElementById("botonPaq");
+        var originalPosition = ele.getBoundingClientRect();
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
 		function f(classDiagram, a, b) {
 			var npaquete = document.getElementById('npaq').value;
 			if (npaquete == "") {
-				alert("Debes insertar un nombre para el paquete");
+                alert("Debes insertar un nombre para el paquete");
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
 				return false;
 			} else {
 				var paquete = new UMLPackage({
@@ -74,8 +80,20 @@ window.onload = function() {
 	}
 
 	function addAttribute() {
+        var ele = document.getElementById("botonAt");
+        var originalPosition = ele.getBoundingClientRect();
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
 		function f(classDiagram, a, b) {
-			var atributo = document.getElementById('nat').value;
+            var atributo = document.getElementById('nat').value;
+            if (atributo == "") {
+                alert("Debes insertar un nombre para el atributo");
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
+				return false;
+			} 
+
 			var access = document.getElementById("access");
 			var strUser = access.options[access.selectedIndex].value;
 			var tipo = document.getElementById('tipoDato').value;
@@ -101,8 +119,19 @@ window.onload = function() {
 	}
 
 	function addOperation() {
+        var ele = document.getElementById("botonMet");
+        var originalPosition = ele.getBoundingClientRect();
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
 		function f(classDiagram, a, b) {
-			var metodo = document.getElementById('met').value;
+            var metodo = document.getElementById('met').value;
+            if (metodo == "") {
+                alert("Debes insertar un nombre para el metodo");
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
+				return false;
+			}
 			var param = document.getElementById('param').value;
 			var ret = document.getElementById('ret').value;
 			var access = document.getElementById("accessMet");
@@ -131,10 +160,18 @@ window.onload = function() {
 	}
 
 	function crearClase() {
+        var ele = document.getElementById("botonClase");
+        var originalPosition = ele.getBoundingClientRect();
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
         function f(classDiagram, a, b) {
             var nclase = document.getElementById('nclase').value;
+
 			if (nclase == "") {
-				alert("Debes insertar un nombre para la clase");
+                alert("Debes insertar un nombre para la clase");
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
 				return false;
 			} else {
 				var clase = new UMLClass({
@@ -161,10 +198,17 @@ window.onload = function() {
 	}
 
 	function crearComponente() {
+        var ele = document.getElementById("botonComp");
+        var originalPosition = ele.getBoundingClientRect();
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
 		function f(classDiagram, a, b) {
 			var nombre = document.getElementById('ncomp').value;
 			if (nombre == "") {
-				alert("Debes insertar un nombre para el componente");
+                alert("Debes insertar un nombre para el componente");
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
 				return false;
 			} else {
 				var element = new UMLComponent({

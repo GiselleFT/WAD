@@ -3021,8 +3021,12 @@ select[multiple].input-lg {
   border: 1px solid transparent;
   border-radius: 4px;
   width: 100px;
-  height: 35px;
 }
+
+button.btn.btn-secondary {
+    height: 33px;
+}
+
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus,

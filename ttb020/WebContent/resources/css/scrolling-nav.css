@@ -35,7 +35,11 @@ of those sections to manage the look and feel of the site. */
     height: 100%;
     padding-top: 90px;
     text-align: center;
-    background: #a4fff3;
+    /*background: #a4fff3;*/
+    background: #00C9FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .about-section {
