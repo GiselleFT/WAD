@@ -30,21 +30,35 @@
 		</s:if>
 		<div class="nav navbar-top-link text-center">
 			<span style="font-size: 30px; color: white; margin-top: 10px;">
-				Trabajo Terminal 2017-B020 </span>
+				Sistema de Modelado UML </span>
 		</div>
 
 		<s:if test="#usuario.perfil.id == #varProf">
 			<div id="mySidenav" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9932;</a>
-				<a href="#">Menu Profesor</a>
+				<a href="${pageContext.request.contextPath}/profesor/gestionar-grupo">Menu Profesor</a>
+				<a href="${pageContext.request.contextPath}/acceso/logout">Cerrar Sesion</a> 
 			</div>
 		</s:if>
 		<s:elseif test="#usuario.perfil.id == #varAl">
 			<div id="mySidenav" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9932;</a>
-				<a href="#">Menu Alumno</a> <a
+				<a href="${pageContext.request.contextPath}/alumno/gestionar-bienvenida">Menu Alumno</a> <a
 					href="${pageContext.request.contextPath}/alumno/inscribir-grupo">Inscribirse
 					a un Grupo</a>
+				<!-- <a href="${pageContext.request.contextPath}/acceso/logout">Cerrar Sesion</a> 
+					<s:submit cssClass="btn btn-ttb020" value="Cerrar Sesion" />
+					
+					
+					
+					<s:form id="frmLogout" method="post"
+					action="%{#pageContext.request.contextPath}/acceso/logout">
+					<s:submit cssClass="btn btn-ttb020" value="Cerrar Sesion" />
+				</s:form>
+				-->
+				<a href="${pageContext.request.contextPath}/acceso/logout">Cerrar Sesion</a> 
+
+
 			</div>
 		</s:elseif>
 	</nav>

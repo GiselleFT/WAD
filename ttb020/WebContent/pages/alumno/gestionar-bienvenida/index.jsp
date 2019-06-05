@@ -45,22 +45,12 @@
 		<div class="form-group">
 			<div class="row">
 				<!-- BOTON CREAR GRUPO -->
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<a
 						href="${pageContext.request.contextPath}/alumno/gestionar-proyecto-alumno/new?idAlumno=${alumno.id}"
 						class="btn btn-default btn-grid"> <i class="material-icons"
 						style="font-size: 48px; color: white;">add_box</i> <br /> <label><s:text
 								name="Crear Proyecto" /></label> <br />
-
-					</a>
-				</div>
-				<!-- BOTON EDITAR PERFIL -->
-				<div class="col-md-6">
-					<a
-						href="${pageContext.request.contextPath}/control-escolar/gestionar-actividad?idOfertaSel=${idSel}&amp;idTipoSel=${idTipoSel}"
-						class="btn btn-grid-second"> <i class="material-icons"
-						style="font-size: 48px; color: white;">edit</i><br /> <label><s:text
-								name="Editar perfil" /></label>
 
 					</a>
 				</div>

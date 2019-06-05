@@ -30,7 +30,7 @@
 <body>
 	<!--Comienza el archivo-->
 	<div class="col-md-12">
-		<h1 class="title">Bienvenido
+		<h1 class="title">Hasta pronto
 		</h1>	
 	</div>
 
@@ -46,40 +46,9 @@
 		<s:form id="frmLogin" method="post" theme="simple"
 			cssClass="form form-horizontal form-medium"
 			action="%{#pageContext.request.contextPath}/acceso/login">
-			<!-- USUARIO -->
-			<div class="form-group">
-				<label
-					class="col-xs-2 col-sm-4 col-md-4">
-					<s:text name="" />
-				</label>
-				<div class="col-xs-12 col-sm-8 col-md-4">
-					<s:textfield placeholder="Usuario" cssClass="form-control"
-						cssClassError="input-error" name="login" id="txUsuario" />
-					<s:fielderror fieldName="login" cssClass="error" theme="bootstrap" />
-				</div>
-			</div>
-			<!-- CONTRASEÑA -->
-			<div class="form-group">
-				<label
-					class="col-xs-2 col-sm-4 col-md-4"><s:property
-						value="" /></label>
-				<div class="col-xs-12 col-sm-8 col-md-4">
-					<s:password placeholder="Contraseña" cssClass="form-control" name="password"
-						cssClassError="input-error" id="txContrasena" />
-					<s:fielderror fieldName="password" cssClass="error"
-						theme="bootstrap" />
-				</div>
-			</div>
-			<!-- BOTON ACEPTAR -->
-			<div class="form-group">
-				<s:submit cssClass="btn btn-ttb020"
-					value="Ingresar" />
-			</div>
-			
-			
 			<a class="btn btn-ttb020"
-				href="${pageContext.request.contextPath}/acceso/registrar-usuario/new"> <s:text
-					name="Registrate" />
+				href="${pageContext.request.contextPath}/pages/acceso/login/index.jsp"> <s:text
+					name="Ir al Login" />
 			</a>
 		</s:form>
 	</div>

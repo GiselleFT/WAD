@@ -63,11 +63,11 @@ public class LoginAct extends ActionSupport {
 			System.err.println("PASSACT"+password);
 			loginBs.ingresar(login, password);
 		} catch (UserNotFoundException e) {
-			addActionError(getText("Usuario o contraseña no encontrados"));
+			addActionError(getText("Usuario o contrasena no encontrados"));
 			System.err.println("Usuario no encontrado");
 		} catch (WrongLoginException ee) {
-			addActionError(getText("Usuario o contraseña no encontrados"));
-			System.err.println("Contraseña no encontrada");
+			addActionError(getText("Usuario o contrasena no encontrados"));
+			System.err.println("Contrasena no encontrada");
 		}
 
 	}
@@ -85,7 +85,7 @@ public class LoginAct extends ActionSupport {
 	 * @return
 	 */
 	public String redireccionarPorPerfil(Usuario usuario) {
-		LOG.info("GISELLE ENTR� A LOGINACT");
+		//LOG.info("LOGINACT");
 		if (usuario.getPerfil().getId() == PerfilUsuarioEnum.PROFESOR.getValor()) {
 			return "profesor";
 		} else {

@@ -15,4 +15,8 @@ public class SesionController {
 	public static Object delete(String nombre) {
 		return ActionContext.getContext().getSession().remove(nombre);
 	}
+	
+	public static void clear() {
+		ActionContext.getContext().getSession().clear();
+	}
 }
