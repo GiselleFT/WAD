@@ -13,11 +13,7 @@
 		<![CDATA[ 
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 		
-		<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin=""></script> 
-    	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin=""></script> 
-    	<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin=""></script> 
-    
-    	<script  type="text/babel" src="Paquete.jsx"></script>
+		
 		]]>
 	</jsp:text>
 	<html xmlns="http://www.w3.org/1999/xhtml" slick-uniqueid="3" dir="ltr"
@@ -32,6 +28,11 @@
 	<script src="${pageContext.request.contextPath}/pages/diagrama/js/UDCore.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/pages/diagrama/js/UDModules.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/pages/diagrama/js/classDiagram-edit.js" type="text/javascript"></script>
+	
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin=""></script> 
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin=""></script> 
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin=""></script> 
+    <script  type="text/babel" src="${pageContext.request.contextPath}/pages/diagrama/clases/Paquete.jsx"></script>
 
 	]]>
 </jsp:text>
@@ -47,62 +48,9 @@
 
 		<div class="firstcolumn" role="group" aria-label="Basic example">
 			<s:if test="#usuario.perfil.id == #varAl">
-				<button type="button" class="btn btn-secondary"
-					onClick="descubreClase()" style="background-color: white;">
-					<label style="color: black;"><s:property value="'Clase'" /></label>
-				</button>
-				<button type="button" onClick="descubreAtributo()"
-					class="btn btn-secondary" style="background-color: white;">
-					<label style="color: black;"><s:property value="'Atributo'" /></label>
-				</button>
-				<button type="button" onClick="descubreMetodo()"
-					class="btn btn-secondary" style="background-color: white;">
-					<label style="color: black;"><s:property value="'Método'" /></label>
-				</button>
-				<button type="button" onClick="descubreComponente()"
-					class="btn btn-secondary" style="background-color: white;">
-					<label style="color: black;"><s:property
-							value="'Componente'" /></label>
-				</button>
-				<button type="button" class="btn btn-secondary"
-					onClick="descubrePaquete()" style="background-color: white;">
-					<label style="color: black;"><s:property value="'Paquete'" /></label>
-				</button>
+				<div id="paqueteComponent"></div>
 
-				<input id="botonGen" type="image"
-					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/herencia.png"
-					width="100" height="37" />
-				<input id="botonAs" type="image"
-					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/asociacion.png"
-					width="100" height="37" />
-				<input id="botonAg" type="image"
-					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/agregacion.png"
-					width="100" height="37" />
-				<input id="botonComposicion" type="image"
-					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/composicion.png"
-					width="100" height="37" />
-				<input id="botonDep" type="image"
-					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/dependencia.png"
-					width="100" height="37" />
-
-				<button type="button" id="botonGuardar" class="btn btn-secondary"
-					style="background-color: white;">
-					<label style="color: black;"><s:property value="'Guardar'" /></label>
-				</button>
-				<button type="button" onClick="descubreComentario()"
-					class="btn btn-secondary" style="background-color: white;">
-					<label style="color: black;"><s:property
-							value="'Comentario'" /></label>
-				</button>
-				<button type="button" id="botonBorrar" class="btn btn-secondary"
-					style="background-color: white;">
-					<label style="color: black;"><s:property value="'Borrar'" /></label>
-				</button>
-				<a class="btn btn-ttb020"
-					href="${pageContext.request.contextPath}/alumno/gestionar-bienvenida">
-					<s:text name="Regresar" />
-				</a>
-
+				
 			</s:if>
 			<s:else>
 				<button type="button" class="hidden btn btn-secondary"
