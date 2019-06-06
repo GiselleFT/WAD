@@ -288,8 +288,11 @@
 				</div>
 			</div>
 			<div id="inputComentario" class="hidden">
-				<a class="btn btn-primary btn-lg" href="#" role="button"
-					id="botonNota">Comentario</a>
+				<div id="inputNotaInside" class="form-group outter-section">
+					<input id="botonNota" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/nota.png"
+						width="100" height="80" />
+				</div>
 			</div>
 			<s:if test="#usuario.perfil.id != #varAl">
 				<div id="inputComent">

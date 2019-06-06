@@ -3,7 +3,7 @@ function descubreActor() {
 	document.getElementById("inputCaso").classList.add('hidden');
 	document.getElementById("inputSistema").classList.add('hidden');
 	document.getElementById("inputSubsistema").classList.add('hidden');
-	document.getElementById("inputComen").classList.add('hidden');
+	document.getElementById("inputComentario").classList.add('hidden');
 }
 
 function descubreUseCase() {
@@ -11,7 +11,7 @@ function descubreUseCase() {
 	document.getElementById("inputActor").classList.add('hidden');
 	document.getElementById("inputSistema").classList.add('hidden');
 	document.getElementById("inputSubsistema").classList.add('hidden');
-	document.getElementById("inputComen").classList.add('hidden');
+	document.getElementById("inputComentario").classList.add('hidden');
 }
 
 function descubreSistema() {
@@ -19,7 +19,7 @@ function descubreSistema() {
 	document.getElementById("inputCaso").classList.add('hidden');
 	document.getElementById("inputActor").classList.add('hidden');
 	document.getElementById("inputSubsistema").classList.add('hidden');
-	document.getElementById("inputComen").classList.add('hidden');
+	document.getElementById("inputComentario").classList.add('hidden');
 }
 
 function descubreSubsistema() {
@@ -27,11 +27,11 @@ function descubreSubsistema() {
 	document.getElementById("inputCaso").classList.add('hidden');
 	document.getElementById("inputActor").classList.add('hidden');
 	document.getElementById("inputSistema").classList.add('hidden');
-	document.getElementById("inputComen").classList.add('hidden');
+	document.getElementById("inputComentario").classList.add('hidden');
 }
 
 function descubreComentario() {
-	document.getElementById("inputComen").classList.remove('hidden');
+	document.getElementById("inputComentario").classList.remove('hidden');
 	document.getElementById("inputSubsistema").classList.add('hidden');
 	document.getElementById("inputCaso").classList.add('hidden');
 	document.getElementById("inputActor").classList.add('hidden');
@@ -40,11 +40,11 @@ function descubreComentario() {
 
 function descubreClase() {
 	document.getElementById("inputClase").classList.remove('hidden');
-    //document.getElementById("botonClase").classList.remove('hidden');
 	document.getElementById("inputAtributo").classList.add('hidden');
 	document.getElementById("inputMetodo").classList.add('hidden');
 	document.getElementById("inputPaquete").classList.add('hidden');
-	document.getElementById("inputComponente").classList.add('hidden');
+    document.getElementById("inputComponente").classList.add('hidden');
+    document.getElementById("inputComentario").classList.add('hidden');
 }
 
 function descubreAtributo() {
@@ -52,7 +52,8 @@ function descubreAtributo() {
 	document.getElementById("inputClase").classList.add('hidden');
 	document.getElementById("inputMetodo").classList.add('hidden');
 	document.getElementById("inputPaquete").classList.add('hidden');
-	document.getElementById("inputComponente").classList.add('hidden');
+    document.getElementById("inputComponente").classList.add('hidden');
+    document.getElementById("inputComentario").classList.add('hidden');
 }
 
 function descubreMetodo(){
@@ -60,7 +61,8 @@ function descubreMetodo(){
 	document.getElementById("inputClase").classList.add('hidden');
 	document.getElementById("inputAtributo").classList.add('hidden');
 	document.getElementById("inputPaquete").classList.add('hidden');
-	document.getElementById("inputComponente").classList.add('hidden');
+    document.getElementById("inputComponente").classList.add('hidden');
+    document.getElementById("inputComentario").classList.add('hidden');
 }
 
 function descubrePaquete(){
@@ -68,7 +70,8 @@ function descubrePaquete(){
 	document.getElementById("inputMetodo").classList.add('hidden');
 	document.getElementById("inputClase").classList.add('hidden');
 	document.getElementById("inputAtributo").classList.add('hidden');
-	document.getElementById("inputComponente").classList.add('hidden');
+    document.getElementById("inputComponente").classList.add('hidden');
+    document.getElementById("inputComentario").classList.add('hidden');
 }
 
 function descubreComponente(){
@@ -76,5 +79,6 @@ function descubreComponente(){
 	document.getElementById("inputPaquete").classList.add('hidden');
 	document.getElementById("inputMetodo").classList.add('hidden');
 	document.getElementById("inputClase").classList.add('hidden');
-	document.getElementById("inputAtributo").classList.add('hidden');
+    document.getElementById("inputAtributo").classList.add('hidden');
+    document.getElementById("inputComentario").classList.add('hidden');
 }
