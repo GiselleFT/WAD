@@ -67,6 +67,17 @@ public class CapaModelo {
 		session.close();
 		return entity;
 	}
+	
+	public <C> C delete(C entity) {
+		Session session = entityManager.unwrap(Session.class);
+		entityManager.clear();
+		session.getTransaction().begin();
+		session.delete(entity);
+		session.flush();
+		session.getTransaction().commit();
+		session.close();
+		return entity;
+	}
 
 	public CapaModelo() {
 		super();

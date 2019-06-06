@@ -84,14 +84,12 @@
 							action="%{pageContext.request.contextPath}/profesor/gestionar-grupo/%{#grupo.id}">
 							<s:submit cssClass="btn btn-ttb020-third material-icons" value="Eliminar" />
 						</s:form>
-						
-						<a
+						 -->
+						 <a
 							href="${pageContext.request.contextPath}/profesor/eliminar-grupo/${grupo.id}"
 							title="${visualizar}" class="btn btn-ttb020-second"> <i
 								class="material-icons">&#xE8F4;</i> <s:text name=" Eliminar" />
-						</a>
-						 -->
-						  
+						</a> 
 
 						</td>
 					</tr>

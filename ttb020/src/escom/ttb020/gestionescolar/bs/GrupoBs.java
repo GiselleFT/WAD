@@ -61,5 +61,15 @@ public class GrupoBs {
 	public List<Grupo> obtenerGruposByProfesor(Integer idProfesor) {
 		return busquedaBs.findByExample(new Grupo(idProfesor));
 	}
+	
+	public boolean eliminarGrupo(Integer idGrupo){
+		List<Grupo> gruposProfesor = obtenerGruposByProfesor(1);
+		Grupo grupoEliminar = gruposProfesor.get(idGrupo);
+		capaModelo.delete(grupoEliminar);
+		return true;
+	}
+	
+	
+	
 
 }

@@ -35,7 +35,12 @@ function descubreComentario() {
 	document.getElementById("inputSubsistema").classList.add('hidden');
 	document.getElementById("inputCaso").classList.add('hidden');
 	document.getElementById("inputActor").classList.add('hidden');
-	document.getElementById("inputSistema").classList.add('hidden');
+    document.getElementById("inputSistema").classList.add('hidden');
+    document.getElementById("inputClase").classList.add('hidden');
+    document.getElementById("inputAtributo").classList.add('hidden');
+	document.getElementById("inputMetodo").classList.add('hidden');
+	document.getElementById("inputPaquete").classList.add('hidden');
+    document.getElementById("inputComponente").classList.add('hidden');
 }
 
 function descubreClase() {

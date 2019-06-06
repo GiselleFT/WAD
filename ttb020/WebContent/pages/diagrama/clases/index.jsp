@@ -47,6 +47,7 @@
 	<s:hidden id="hdnXML" name="data" value="%{version.data}"></s:hidden>
 	
 	<div class="row">
+		<!-- 1era columna, botones verticales -->
 		<div class="firstcolumn" role="group" aria-label="Basic example">
 			<s:if test="#usuario.perfil.id == #varAl">
 				<button type="button" class="btn btn-secondary"
@@ -141,6 +142,7 @@
 				-->
 			</s:if>
 			<s:else>
+			<!-- Se ocultan botones que tiene permitido el usuario Alumno para el usuario Profesor -->
 				<button type="button" class="hidden btn btn-secondary"
 					onClick="descubreClase()" style="background-color: black;">
 					<label style="color: white;"><s:property value="'Clase'" /></label>
@@ -210,6 +212,8 @@
 				</a>
 			</s:else>
 		</div>
+		<!-- Segunda columna, en esta sección se despliegan los elementos que forman parte de la creación para algún componente
+		del diagrama de clases seleccionado por el usuario -->
 		<fieldset class="secondcolumn" style="background-color: #f8f8f8;">
 			<legend class="form-section">
 				<label><s:property value="'Información del elemento'" /></label>
@@ -313,6 +317,7 @@
 				</div>
 			</s:else>
 		</fieldset>
+		<!-- Canvas del diagrama -->
 		<div class="secondcolumn" id="classDiagram"></div>
 		<div class="thirdcolumn" id="comentarios">segunda columna</div>
 		<div class="fourthcolumn" id="console">

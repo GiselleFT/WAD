@@ -53,12 +53,13 @@
 					<tr>
 						<td><s:property value="#alumno" /></td>
 						<td>
-							<!-- Eliminar Ciclo --> <a
+							<!-- Eliminar Ciclo  <a
 							onclick="myClickDlgEliminar('${ciclo.id}','${ciclo.nombre}')"
 							title="${eliminar}" class="btn btn-ttb020-third"> <i
 								class="material-icons">delete_forever</i>
 							<s:text name="Baja" />
 						</a>
+						-->
 
 						</td>
 					</tr>

@@ -21,7 +21,7 @@ import escom.ttb020.util.SesionController;
 /*Action que permite la gestion de grupos para el tipo de usuario Profesor*/
 @Namespace("/profesor")
 @Results({ @Result(name = "success", type = "redirectAction", params = { "actionName", "gestionar-grupo" }) })
-public class GestionarGrupoAct extends ActionSupport {
+public class EliminarGrupoAct extends ActionSupport {
 
 	/**
 	 * 
@@ -122,9 +122,8 @@ public class GestionarGrupoAct extends ActionSupport {
 	 */
 	public String show() {
 		System.err.println("Grupo " + idSel);
-		List<AlumnoGrupo> listAlumnosGrupo = busquedaBs.findByExample(new AlumnoGrupo(idSel, null));
-		listAlumnos = alumnoBs.obtenerAlumnosporGrupo(listAlumnosGrupo);
-		return "show";
+		grupoBs.eliminarGrupo(idSel);
+		return "success";
 	}
 	
 	
@@ -135,7 +134,7 @@ public class GestionarGrupoAct extends ActionSupport {
 	 */
 	public String delete() {
 		System.err.println("Grupo " + idSel);
-		grupoBs.eliminarGrupo(idSel);
+		grupoBs.eliminarGrupo(idSel-1);
 		return "index";
 	}
 	

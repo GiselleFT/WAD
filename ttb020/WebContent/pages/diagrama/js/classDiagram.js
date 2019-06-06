@@ -1,7 +1,7 @@
 /**
  * Script para utilizar todos los componentes de un diagrama de clases nuevo
  */
-
+/*Se obtienen las dimensiones del canvas*/
 var ancho = 0;
 var alto = 0;
 if (document.body) {
@@ -26,6 +26,7 @@ function consoleWrite(texto) {
 	document.getElementById('console').innerHTML = text;
 }
 
+/*Limpiar contenido de algún elemento según su id */
 function cleanForm(id) {
 	document.getElementById(id).value = "";
 }
@@ -53,7 +54,9 @@ window.onload = function() {
 	// This diagram is editable
 	classDiagram.interaction(true);
 
+    /*Creación de Paquete */
 	function crearPaquete() {
+        //Se recupera el botón y su posición inicial
         var ele = document.getElementById("botonPaq");
         var originalPosition = ele.getBoundingClientRect();
         var posX = ele.offsetLeft;
@@ -79,7 +82,9 @@ window.onload = function() {
         dragAndDropPaquete(f);
 	}
 
+    //Creación de atributo
 	function addAttribute() {
+        //Se recupera el botón y su posición inicial
         var ele = document.getElementById("botonAt");
         var originalPosition = ele.getBoundingClientRect();
         var posX = ele.offsetLeft;
@@ -118,7 +123,9 @@ window.onload = function() {
         dragAndDropAtributoEnviar(f);
 	}
 
+    //Creación de método
 	function addOperation() {
+        //Se recupera el botón y su posición inicial
         var ele = document.getElementById("botonMet");
         var originalPosition = ele.getBoundingClientRect();
         var posX = ele.offsetLeft;
@@ -159,7 +166,9 @@ window.onload = function() {
         dragAndDropMetodoEnviar(f);
 	}
 
+    //Creación de clase
 	function crearClase() {
+        //Se recupera el botón y su posición inicial
         var ele = document.getElementById("botonClase");
         var originalPosition = ele.getBoundingClientRect();
         var posX = ele.offsetLeft;
@@ -197,7 +206,9 @@ window.onload = function() {
         dragAndDropClase(f);
 	}
 
+    //Creación de componente
 	function crearComponente() {
+        //Se recupera el botón y su posición inicial
         var ele = document.getElementById("botonComp");
         var originalPosition = ele.getBoundingClientRect();
         var posX = ele.offsetLeft;
@@ -224,6 +235,7 @@ window.onload = function() {
         dragAndDropComponente(f);
 	}
 
+    //Guardar cambios realizados en el diagrama
 	function guardar() {
 		var save = classDiagram.getXMLString();
 		$("#idDiagrama").attr("value", save);
@@ -270,6 +282,7 @@ window.onload = function() {
 		interaccionUnClick(f);
 	}
 
+    //Crear generalización
 	function crearGeneralizacion() {
 		function f(classDiagram, x1, y1, x2, y2) {
 			var elemento1 = classDiagram.getElementByPoint(x1, y1);
@@ -311,6 +324,7 @@ window.onload = function() {
 		interactionDoubleClick(f);
 	}
 
+    //Crear asociación
 	function crearAsociacion() {
 		function f(classDiagram, x1, y1, x2, y2) {
 			var elemento1 = classDiagram.getElementByPoint(x1, y1);
@@ -343,6 +357,7 @@ window.onload = function() {
 		interactionDoubleClick(f);
 	}
 
+    //Crear agregación
 	function crearAgregacion() {
 		function f(classDiagram, x1, y1, x2, y2) {
 			var elemento1 = classDiagram.getElementByPoint(x1, y1);
@@ -390,6 +405,7 @@ window.onload = function() {
 		interactionDoubleClick(f);
 	}
 
+    //Crear composición
 	function crearComposicion() {
 		function f(classDiagram, x1, y1, x2, y2) {
 			var elemento1 = classDiagram.getElementByPoint(x1, y1);
@@ -439,6 +455,7 @@ window.onload = function() {
 		interactionDoubleClick(f);
 	}
 
+    //Crear dependencia
 	function crearDependencia() {
 		function f(classDiagram, x1, y1, x2, y2) {
 			var elemento1 = classDiagram.getElementByPoint(x1, y1);
@@ -458,6 +475,7 @@ window.onload = function() {
 		$("#hdnRel").attr("value", "dependencia");
 		interactionDoubleClick(f);
 	}
+
 
 	function crearRealizacion() {
 		function f(classDiagram, x1, y1, x2, y2) {
@@ -494,6 +512,7 @@ window.onload = function() {
 		interactionDoubleClick(f);
 	}
 
+    //Crear nota en el diagrama (Actor alumno)
 	function crearNota() {
 		function f(classDiagram, a, b) {
 			var note = new UMLNote({
@@ -507,6 +526,7 @@ window.onload = function() {
         dragAndDropNota(f);
 	}
 
+    //Borrar elemento del diagrama
 	function borrar() {
 		function f(classDiagram, x, y) {
 			var elem = classDiagram.getElementByPoint(x, y);
@@ -562,8 +582,10 @@ window.onload = function() {
 		div.onclick = funcionCaptura;
     }
 
+    //Funcion drag and drop de boton atributo
     var dragAndDropAtributoEnviar = function(funcion) {
-		classDiagram.interaction(false);
+        classDiagram.interaction(false);
+        //Se obtiene la posición original del botón
 		var div = document.getElementsByClassName('ud_diagram_div')[0];
         var ele = document.getElementById("botonAt");
         //var posX = originalPosition.left + window.scrollX;
@@ -571,6 +593,7 @@ window.onload = function() {
         var posX = ele.offsetLeft;
         var posY = ele.offsetTop;
 
+        //Al hacer clic sobre el botón 
         ele.onmousedown = function(event){
             var shiftX = event.clientX - ele.getBoundingClientRect().left;
             var shiftY = event.clientY - ele.getBoundingClientRect().top;
@@ -580,12 +603,13 @@ window.onload = function() {
 
             moveAt(event.pageX, event.pageY);
             
-            //centra componente en las coordenadas
+            //centra componente en las coordenadas al hacer clic sobre él
             function moveAt(pageX, pageY){
                 ele.style.left = pageX - shiftX + 'px';
                 ele.style.top = pageY - shiftY + 'px';
             }
 
+            //desplaza el elemento cuando movemos el mouse
             function onMouseMove(event){
                 moveAt(event.pageX, event.pageY);
             }
@@ -593,7 +617,7 @@ window.onload = function() {
             //mueve de acuerdo al mouse
             document.addEventListener('mousemove', onMouseMove);
             
-            //drop
+            //Al soltar el mouse, drop
             ele.onmouseup = function(){
                 document.removeEventListener('mousemove', onMouseMove);
                 ele.onclick = funcionCaptura();
@@ -609,6 +633,7 @@ window.onload = function() {
             return false;
         };
 
+        //dibuja el elemento en la posición final
         var funcionCaptura = function() {
 			var mousex = event.pageX - div.offsetLeft;
             var mousey = event.pageY - div.offsetTop;
