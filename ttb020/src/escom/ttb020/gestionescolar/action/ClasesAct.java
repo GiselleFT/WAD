@@ -23,10 +23,7 @@ import escom.ttb020.util.AjaxResult;
 import escom.ttb020.util.AjaxResult.EnumRespuestaAjax;
 import escom.ttb020.util.SesionController;
 
-/**
- * @author edson
- *
- */
+/*Action para la creación de los diagramas de clases*/
 @Namespace("/diagrama")
 @Results({
 		@Result(name = "obtMetodos", type = "json", params = { "root", "action", "includeProperties", "ajaxResult.*" }),

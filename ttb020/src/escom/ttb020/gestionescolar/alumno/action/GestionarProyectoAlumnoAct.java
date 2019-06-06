@@ -14,7 +14,7 @@ import escom.ttb020.gestionescolar.bs.ProyectoBs;
 import escom.ttb020.gestionescolar.mapeo.Grupo;
 import escom.ttb020.gestionescolar.mapeo.Proyecto;
 import escom.ttb020.util.SesionController;
-
+/*Action que permite la creación de nuevos proyectos para el usuario de tipo Alumno*/
 @Namespace("/alumno")
 @Results({ @Result(name = "success", type = "redirectAction", params = { "actionName",
 		"../alumno/gestionar-bienvenida" }) })

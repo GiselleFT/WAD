@@ -18,7 +18,7 @@ import escom.ttb020.gestionescolar.mapeo.AlumnoGrupo;
 import escom.ttb020.gestionescolar.mapeo.Grupo;
 import escom.ttb020.gestionescolar.mapeo.Profesor;
 import escom.ttb020.util.SesionController;
-
+/*Action que permite la gestion de grupos para el tipo de usuario Profesor*/
 @Namespace("/profesor")
 @Results({ @Result(name = "success", type = "redirectAction", params = { "actionName", "gestionar-grupo" }) })
 public class GestionarGrupoAct extends ActionSupport {
@@ -78,7 +78,7 @@ public class GestionarGrupoAct extends ActionSupport {
 	 */
 	private Integer idSel;
 
-	/**
+	/**Se invoca en peticiones GET
 	 * metodo que redirecciona al jsp index
 	 * 
 	 * @return

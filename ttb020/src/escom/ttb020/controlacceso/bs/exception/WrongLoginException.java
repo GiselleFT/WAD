@@ -2,7 +2,7 @@ package escom.ttb020.controlacceso.bs.exception;
 
 public class WrongLoginException extends Exception {
 
-	/**
+	/**Excepción para login incorrecto
 	 * 
 	 */
 	private static final long serialVersionUID = 6954293740291573583L;

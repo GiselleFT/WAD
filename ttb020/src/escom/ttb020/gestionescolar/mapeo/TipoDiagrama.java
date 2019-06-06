@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+/*Mapeo a la tabla ge10_tipo_diagrama */
 @Entity
 @Table(name="ge10_tipo_diagrama")
 public class TipoDiagrama {

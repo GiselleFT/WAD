@@ -12,7 +12,7 @@ import escom.ttb020.util.SesionController;
 public class LoginBs {
 	
 	private UsuarioBs usuarioBS = new UsuarioBs();
-
+	/*Valida que el usuario y la contraseña son correctos*/
 	public Usuario ingresar(String login, String password) throws UserNotFoundException, WrongLoginException {
 		Usuario user = usuarioBS.buscarUsuario(login);
 		if(user == null) {
@@ -22,6 +22,7 @@ public class LoginBs {
 			System.err.println(password);
 			System.err.println(user.getPassword());
 			if(password.equals(user.getPassword())) {
+				/*Si el login fue exitoso crea la sesión para el usuario logeado*/
 				SesionController.put("session_user", user);
 			}else {
 				throw new WrongLoginException();

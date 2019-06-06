@@ -23,10 +23,6 @@ import escom.ttb020.util.AjaxResult;
 import escom.ttb020.util.AjaxResult.EnumRespuestaAjax;
 import escom.ttb020.util.SesionController;
 
-/**
- * @author edson
- *
- */
 @Namespace("/diagrama")
 @Results({ @Result(name = "prueba", type = "json", params = { "root", "action", "includeProperties", "ajaxResult.*" }),
 		@Result(name = "exito", type = "json", params = { "root", "action", "includeProperties", "ajaxResult.*" }),

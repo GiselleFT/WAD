@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+/*Mapeo a la tabla ge11_comentario */
 @Entity
 @Table(name="ge11_comentario")
 public class Comentario {

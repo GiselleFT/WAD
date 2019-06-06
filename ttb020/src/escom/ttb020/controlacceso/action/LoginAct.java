@@ -17,12 +17,19 @@ import escom.ttb020.controlacceso.bs.exception.WrongLoginException;
 import escom.ttb020.controlacceso.mapeo.Perfil.PerfilUsuarioEnum;
 import escom.ttb020.controlacceso.mapeo.Usuario;
 import escom.ttb020.util.SesionController;
-
-@Namespace("/acceso")
+/*	Acción que permite el Login, es decir ingresar a la aplicación web al ser
+ *  un usuario registrado
+ * */
+@Namespace("/acceso")//Forma parte del espacio de nombres, de esta forma se sabe como ir construyendo la URL para invocar al action
+/*Los resultados posibles, es decir, a donde se redireccionará la aplicación web, existen 2 actores diferentes, por lo tanto
+ * si el login es exitoso, se trata de un profesor o de un alumno, en cualquier caso redirige al index que se encuentra dentro
+ * de las carpetas especificadas en "params" dependiendo el Result
+ * */
 @Results({
 		@Result(name = "profesor", type = "redirectAction", params = { "actionName", "../profesor/gestionar-grupo" }),
 		@Result(name = "alumno", type = "redirectAction", params = { "actionName", "../alumno/gestionar-bienvenida" }) })
 public class LoginAct extends ActionSupport {
+	//Permite imprimir en el Log
 	private static final Logger LOG = LogManager.getLogger(LoginAct.class);
 	/**
 	 * 
@@ -44,7 +51,8 @@ public class LoginAct extends ActionSupport {
 	 */
 	private LoginBs loginBs = new LoginBs();
 
-	/**
+	/** Este método se invoca cuando se hace una petición GET a este Accion
+	 * Redirige al index del paquete al que pertenece este Action
 	 * @return
 	 */
 	public String index() {
@@ -56,11 +64,13 @@ public class LoginAct extends ActionSupport {
 	}
 
 	/**
-	 * 
+	 * Este método se invoca cuando se hace una petición POST a este Accion
+	 * Se encarga de validar si el login (usuario) y password son correctos
 	 */
 	public void validateCreate() {
 		try {
 			System.err.println("PASSACT"+password);
+			//En caso exitoso agrega al SesionController el session_user
 			loginBs.ingresar(login, password);
 		} catch (UserNotFoundException e) {
 			addActionError(getText("Usuario o contrasena no encontrados"));
@@ -72,7 +82,9 @@ public class LoginAct extends ActionSupport {
 
 	}
 
-	/**
+	/** Este método se invoca cuando se hace una petición POST a este Accion
+	 * Al recibir nombre de usuario y contraseña correctos crea un objeto de tipo Usuario
+	 * posteriormente se invoca al metodo para redireccionar en caso de ser alumno o profesor
 	 * @return
 	 */
 	public String create() {
@@ -80,7 +92,8 @@ public class LoginAct extends ActionSupport {
 		return redireccionarPorPerfil(usuario);
 	}
 
-	/**
+	/**Redirecciona a las páginas de inicio de sesión dependiendo del tipo de usuario, 
+	 * profesor o alumno
 	 * @param usuario
 	 * @return
 	 */

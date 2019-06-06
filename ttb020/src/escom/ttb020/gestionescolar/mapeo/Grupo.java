@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+/*Mapeo a la tabla ge05_grupo */
 @Entity
 @Table(name="ge05_grupo")
 public class Grupo {

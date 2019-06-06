@@ -17,6 +17,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class ManagerXML {
+	//Obtencion de un arreglo de todos los diagramas de clase
 	public ArrayList<ClassDiagram> getAllClassDiagram() {
 		ArrayList<ClassDiagram> clases = new ArrayList<ClassDiagram>();
 		try {
@@ -151,6 +152,7 @@ public class ManagerXML {
 		return clases;
 	}
 	
+	//Obtencion de un arreglo de todos los diagramas de casos de uso
 	public ArrayList<UseCase> getAllUseCase() {
 		ArrayList<UseCase> cases = new ArrayList<UseCase>();
 		try {
@@ -211,7 +213,7 @@ public class ManagerXML {
 		return cases;
 	}
 	
-	
+	//Obtencion de un arreglo de todos los actores
 	public ArrayList<Actor> getAllActors(String pathXml) {
 		// TODO Auto-generated method stub
 		ArrayList<Actor> actores = new ArrayList<Actor>();

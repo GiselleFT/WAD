@@ -18,7 +18,7 @@ import escom.ttb020.gestionescolar.mapeo.Alumno;
 import escom.ttb020.gestionescolar.mapeo.Grupo;
 import escom.ttb020.gestionescolar.mapeo.Profesor;
 import escom.ttb020.util.SesionController;
-
+/*Action que permite al usuario Alumno inscribirse a alguno de los grupos existentes*/
 @Namespace("/alumno")
 @Results({ @Result(name = "success", type = "redirectAction", params = { "actionName", "gestionar-bienvenida"}) })
 @AllowedMethods("buscarGrupo")

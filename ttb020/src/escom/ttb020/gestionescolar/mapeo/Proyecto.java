@@ -16,7 +16,7 @@ import com.opensymphony.xwork2.validator.annotations.IntRangeFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
-
+/*Mapeo a la tabla ge07_proyecto */
 @Entity
 @Table(name = "ge07_proyecto")
 public class Proyecto {

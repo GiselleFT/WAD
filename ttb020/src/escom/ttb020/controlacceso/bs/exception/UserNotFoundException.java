@@ -2,7 +2,7 @@ package escom.ttb020.controlacceso.bs.exception;
 
 public class UserNotFoundException extends Exception {
 
-	/**
+	/**Excepción para usuario no encontrado
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;

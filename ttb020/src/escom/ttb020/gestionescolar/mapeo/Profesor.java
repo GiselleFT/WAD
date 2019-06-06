@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+/*Mapeo a la tabla ge03_profesor */
 @Entity
 @Table(name = "ge03_profesor")
 public class Profesor {

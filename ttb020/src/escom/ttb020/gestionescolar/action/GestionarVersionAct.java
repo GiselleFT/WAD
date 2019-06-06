@@ -11,10 +11,6 @@ import escom.ttb020.gestionescolar.bs.VersionBs;
 import escom.ttb020.gestionescolar.mapeo.Diagrama;
 import escom.ttb020.gestionescolar.mapeo.Version;
 
-/**
- * @author edson
- *
- */
 @Namespace("/diagrama")
 public class GestionarVersionAct extends ActionSupport {
 

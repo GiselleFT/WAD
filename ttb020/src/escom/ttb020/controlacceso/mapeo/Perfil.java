@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+/*Clase Java, mapea la tabla "cat02_perfil" de la Base de datos*/
 @Entity
 @Table(name="cat02_perfil")
 public class Perfil {

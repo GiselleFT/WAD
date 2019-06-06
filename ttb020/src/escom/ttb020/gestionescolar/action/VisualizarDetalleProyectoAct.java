@@ -22,10 +22,7 @@ import escom.ttb020.gestionescolar.mapeo.Proyecto;
 import escom.ttb020.gestionescolar.mapeo.TipoDiagrama.TipoDiagramaEnum;
 import escom.ttb020.util.SesionController;
 
-/**
- * @author edson
- *
- */
+/*Action que permite visualizar el detalle de los proyectos creados por un usuario*/
 @Namespace("/diagrama")
 @Results({
 		@Result(name = "successDiagrama", type = "redirectAction", params = { "actionName", "caso-uso", "idProyecto",
@@ -107,7 +104,7 @@ public class VisualizarDetalleProyectoAct extends ActionSupport {
 	 */
 	private Integer idColaboradorSel;
 
-	/**
+	/**Este método se invoca en peticiones GET
 	 * @return
 	 */
 	public String index() {
@@ -144,7 +141,7 @@ public class VisualizarDetalleProyectoAct extends ActionSupport {
 		model = diagramaBs.regitrarDiagramaCu(model);
 	}
 
-	/**
+	/**Este método se invoca en peticiones POST
 	 * @return
 	 */
 	public String create() {

@@ -2,7 +2,7 @@ package escom.ttb020.controlacceso.bs.exception;
 
 public class RepeatedUserException extends Exception {
 
-	/**
+	/**Excepción para usuario repetido
 	 * 
 	 */
 	private static final long serialVersionUID = -3656933286890413011L;

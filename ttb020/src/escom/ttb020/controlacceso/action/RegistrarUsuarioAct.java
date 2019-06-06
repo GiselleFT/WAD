@@ -16,6 +16,7 @@ import escom.ttb020.controlacceso.mapeo.Perfil;
 import escom.ttb020.controlacceso.mapeo.Usuario;
 
 @Namespace("/acceso")
+/*Cuando el registro es exitoso, se redirecciona a la página principal de la aplicación web*/
 @Results({ @Result(name = "success", type = "redirectAction", params = { "actionName", "login" }) })
 public class RegistrarUsuarioAct extends ActionSupport {
 
@@ -72,7 +73,8 @@ public class RegistrarUsuarioAct extends ActionSupport {
 		return "editNew";
 	}
 
-	/**
+	/** Este método se invoca cuando se hace una petición POST a este Accion
+	 * Se valida la creación de usuario
 	 * @return
 	 */
 	public void validateCreate() {
@@ -89,6 +91,8 @@ public class RegistrarUsuarioAct extends ActionSupport {
 		
 	}
 
+	/* Este método se invoca cuando se hace una petición POST a este Accion, 
+	 * notifica que el registro fue exitoso de ser así y redirige a la página de inicio */
 	public String create() {
 		addActionMessage("Usuario " + model.getLogin() + " registrado exitosamente");
 		System.err.println("Usuario registrado");

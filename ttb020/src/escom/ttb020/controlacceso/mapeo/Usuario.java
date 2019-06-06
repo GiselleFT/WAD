@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+/*Clase Java, mapea la tabla "cat01_users" de la base de datos*/
 @Entity
 @Table(name = "cat01_users")
 public class Usuario {

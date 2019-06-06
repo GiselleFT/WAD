@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+/*Mapeo a la tabla ge09_diagrama */
 @Entity
 @Table(name = "ge09_diagrama")
 public class Diagrama {

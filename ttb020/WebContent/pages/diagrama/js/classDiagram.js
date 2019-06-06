@@ -1,5 +1,5 @@
 /**
- * Script para utilizar todos los componentes de un diagrama de clases
+ * Script para utilizar todos los componentes de un diagrama de clases nuevo
  */
 
 var ancho = 0;

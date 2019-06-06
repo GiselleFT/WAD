@@ -4,7 +4,8 @@ import java.util.List;
 
 import escom.ttb020.gestionescolar.mapeo.Alumno;
 import escom.ttb020.gestionescolar.mapeo.Proyecto;
-
+/*Esta clase contiene los métodos get y set que permiten obtener la lista de alumnos 
+ * para proyectos colaborativos*/
 public class ProyectoColaboradoresView {
 
 	/**

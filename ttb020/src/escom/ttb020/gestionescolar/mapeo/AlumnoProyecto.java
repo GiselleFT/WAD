@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
+/*Mapeo a la tabla ge08_alumno_proyecto */
 @Entity
 @Table(name = "ge08_alumno_proyecto")
 public class AlumnoProyecto {

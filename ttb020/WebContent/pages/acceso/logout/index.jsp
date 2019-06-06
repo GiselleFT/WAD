@@ -41,7 +41,7 @@
 		</div>
 	</div>
 
-	<!-- Formulario Login -->
+	<!-- Formulario Logout -->
 	<div class="col-sm-12">
 		<s:form id="frmLogin" method="post" theme="simple"
 			cssClass="form form-horizontal form-medium"

@@ -9,11 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import escom.ttb020.bs.util.BusquedaBs;
 import escom.ttb020.gestionescolar.mapeo.Comentario;
 import escom.ttb020.gestionescolar.mapeo.Diagrama;
-
-/**
- * @author edson
- *
- */
+/*Action que permite visualizar los comentarios de los diagramas*/
 @Namespace("/diagrama")
 public class VisualizarComentarioAct extends ActionSupport {
 

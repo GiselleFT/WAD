@@ -12,7 +12,7 @@ import escom.ttb020.gestionescolar.bs.ProyectoBs;
 import escom.ttb020.gestionescolar.mapeo.Alumno;
 import escom.ttb020.gestionescolar.mapeo.Proyecto;
 import escom.ttb020.util.SesionController;
-
+/*Action de bienvenida al usuario Alumno, es decir cuando el login fue exitoso*/
 @Namespace("/alumno")
 public class GestionarBienvenidaAct extends ActionSupport {
 

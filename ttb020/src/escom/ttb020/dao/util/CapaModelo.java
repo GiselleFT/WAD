@@ -24,7 +24,7 @@ public class CapaModelo {
 	protected EntityManagerFactory factory = Persistence.createEntityManagerFactory("tt");;
 
 	/**
-	 * Proporciona acceso a la implementaciÃ³n del EntityManager de JPA
+	 * Proporciona acceso a la implementación del EntityManager de JPA
 	 */
 	protected EntityManager entityManager = factory.createEntityManager();
 
