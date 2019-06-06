@@ -4,6 +4,8 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:s="/struts-tags"
 	xmlns:sj="/struts-jquery-tags"
 	xmlns:log="http://jakarta.apache.org/taglibs/log-1.0">
+	<jsp:directive.page import="escom.ttb020.util.SesionController" />
+	<jsp:directive.page import="escom.ttb020.controlacceso.mapeo.Usuario" />
 	<jsp:directive.page language="java"
 		contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" />
 	<jsp:text>
@@ -31,8 +33,10 @@
 	
 	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin=""></script> 
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin=""></script> 
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin=""></script> 
-    <script  type="text/babel" src="${pageContext.request.contextPath}/pages/diagrama/clases/Paquete.jsx"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin=""></script>
+    
+    <script  type="text/babel" src="${pageContext.request.contextPath}/pages/diagrama/clases/DiagramaClase.jsx"></script>
+    <script  type="text/babel" src="${pageContext.request.contextPath}/pages/diagrama/clases/Comentario.jsx"></script>
 
 	]]>
 </jsp:text>
@@ -43,14 +47,99 @@
 	<!-- Usuario en sesion -->
 	<s:set var="usuario" value="%{#session['session_user']}" />
 	<s:hidden id="hdnXML" name="data" value="%{version.data}"></s:hidden>
-
 	<div class="row">
-
 		<div class="firstcolumn" role="group" aria-label="Basic example">
 			<s:if test="#usuario.perfil.id == #varAl">
-				<div id="paqueteComponent"></div>
+				<button type="button" class="btn btn-secondary"
+					onClick="descubreClase()" style="background-color: white;">
+					<label style="color: black;"><s:property value="'Clase'" /></label>
+				</button>
+				<button type="button" onClick="descubreAtributo()"
+					class="btn btn-secondary" style="background-color: white;">
+					<label style="color: black;"><s:property value="'Atributo'" /></label>
+				</button>
+				<button type="button" onClick="descubreMetodo()"
+					class="btn btn-secondary" style="background-color: white;">
+					<label style="color: black;"><s:property value="'Método'" /></label>
+				</button>
+				<button type="button" onClick="descubreComponente()"
+					class="btn btn-secondary" style="background-color: white;">
+					<label style="color: black;"><s:property
+							value="'Componente'" /></label>
+				</button>
+				<button type="button" class="btn btn-secondary"
+					onClick="descubrePaquete()" style="background-color: white;">
+					<label style="color: black;"><s:property value="'Paquete'" /></label>
+				</button>
 
-				
+				<input id="botonGen" type="image"
+					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/herencia.png"
+					width="100" height="37" />
+				<input id="botonAs" type="image"
+					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/asociacion.png"
+					width="100" height="37" />
+				<input id="botonAg" type="image"
+					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/agregacion.png"
+					width="100" height="37" />
+				<input id="botonComposicion" type="image"
+					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/composicion.png"
+					width="100" height="37" />
+				<input id="botonDep" type="image"
+					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/dependencia.png"
+					width="100" height="37" />
+
+				<button type="button" id="botonGuardar" class="btn btn-secondary"
+					style="background-color: white;">
+					<label style="color: black;"><s:property value="'Guardar'" /></label>
+				</button>
+				<button type="button" onClick="descubreComentario()"
+					class="btn btn-secondary" style="background-color: white;">
+					<label style="color: black;"><s:property
+							value="'Comentario'" /></label>
+				</button>
+				<button type="button" id="botonBorrar" class="btn btn-secondary"
+					style="background-color: white;">
+					<label style="color: black;"><s:property value="'Borrar'" /></label>
+				</button>
+				<a class="btn btn-ttb020"
+					href="${pageContext.request.contextPath}/alumno/gestionar-bienvenida">
+					<s:text name="Regresar" />
+				</a>
+				<!-- REACT 
+				<div>
+					<div id="diagramaClaseComponent"></div>
+				</div>
+					<input id="botonGen" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/herencia.png"
+						width="100" height="37" /> 
+					<input id="botonAs" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/asociacion.png"
+						width="100" height="37" /> 
+					<input id="botonAg" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/agregacion.png"
+						width="100" height="37" /> 
+					<input id="botonComposicion" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/composicion.png"
+						width="100" height="37" /> 
+					<input id="botonDep" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/dependencia.png"
+						width="100" height="37" />
+					<button type="button" id="botonGuardar" class="btn btn-secondary"
+						style="background-color: white;">
+						<label style="color: black;"><s:property value="'Guardar'" /></label>
+					</button>
+				<div>
+					<div id="comentarioComponent"></div>
+				</div>
+					<button type="button" id="botonBorrar" class="btn btn-secondary"
+						style="background-color: white;">
+						<label style="color: black;"><s:property value="'Borrar'" /></label>
+					</button>
+					<a class="btn btn-ttb020"
+						href="${pageContext.request.contextPath}/alumno/gestionar-bienvenida">
+						<s:text name="Regresar" />
+					</a>
+				-->
 			</s:if>
 			<s:else>
 				<button type="button" class="hidden btn btn-secondary"
@@ -123,10 +212,10 @@
 			</s:else>
 		</div>
 
-		<legend class="form-section">
-			<label><s:property value="'Información del elemento'" /></label>
-		</legend>
 		<fieldset class="secondcolumn" style="background-color: #f8f8f8;">
+			<legend class="form-section">
+				<label><s:property value="'Información del elemento'" /></label>
+			</legend>
 			<div id="inputPaquete" class="hidden">
 				<div id="inputPaqueteInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
@@ -138,7 +227,7 @@
 						width="90" height="80" />
 				</div>
 			</div>
-			
+
 			<div id="inputClase" class="hidden">
 				<div id="inputClaseInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text

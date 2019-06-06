@@ -24,6 +24,13 @@
 	<script src="${pageContext.request.contextPath}/pages/diagrama/js/UDCore.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/pages/diagrama/js/UDModules.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/pages/diagrama/js/classDiagram.js" type="text/javascript"></script>
+	
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin=""></script> 
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin=""></script> 
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin=""></script>
+    
+    <script  type="text/babel" src="${pageContext.request.contextPath}/pages/diagrama/clases/DiagramaClase.jsx"></script>
+    <script  type="text/babel" src="${pageContext.request.contextPath}/pages/diagrama/clases/Comentario.jsx"></script>
 	]]>
 </jsp:text>
 </head>
@@ -33,142 +40,275 @@
 		var TogetherJSConfig_includeHashInUrl = true
 	</script>
 	<script src="https://togetherjs.com/togetherjs-min.js"></script>-->
-	<div class="btn-group outter-section" role="group"
-		aria-label="Basic example">
-		<button type="button" class="btn btn-secondary"
-			onClick="descubreClase()" style="background-color: black;">
-			<label style="color: white;"><s:property value="'Clase'" /></label>
-		</button>
-		<button type="button" onClick="descubreAtributo()"
-			class="btn btn-secondary" style="background-color: black;">
-			<label style="color: white;"><s:property value="'Atributo'" /></label>
-		</button>
-		<button type="button" onClick="descubreMetodo()"
-			class="btn btn-secondary" style="background-color: black;">
-			<label style="color: white;"><s:property value="'Método'" /></label>
-		</button>
-		<button type="button" id="botonGen" class="btn btn-secondary"
-			style="background-color: black;">
-			<label style="color: white;"><s:property value="'Herencia'" /></label>
-		</button>
-		<button type="button" id="botonAs" class="btn btn-secondary"
-			style="background-color: black;">
-			<label style="color: white;"><s:property value="'Asociación'" /></label>
-		</button>
-		<button type="button" id="botonAg" class="btn btn-secondary"
-			style="background-color: black;">
-			<label style="color: white;"><s:property value="'Agregación'" /></label>
-		</button>
-		<button type="button" id="botonComposicion" class="btn btn-secondary"
-			style="background-color: black;">
-			<label style="color: white;"><s:property
-					value="'Composición'" /></label>
-		</button>
-		<button type="button" id="botonDep" class="btn btn-secondary"
-			style="background-color: black;">
-			<label style="color: white;"><s:property
-					value="'Dependencia'" /></label>
-		</button>
-		<button type="button" id="botonReal" class="btn btn-secondary"
-			style="background-color: black;">
-			<label style="color: white;"><s:property
-					value="'Realizacion'" /></label>
-		</button>
-		<button type="button" onClick="descubreComponente()"
-			class="btn btn-secondary" style="background-color: black;">
-			<label style="color: white;"><s:property value="'Componente'" /></label>
-		</button>
-		<button type="button" class="btn btn-secondary"
-			onClick="descubrePaquete()" style="background-color: black;">
-			<label style="color: white;"><s:property value="'Paquete'" /></label>
-		</button>
-		<button type="button" id="botonGuardar" class="btn btn-secondary"
-			style="background-color: black;">
-			<label style="color: white;"><s:property value="'Guardar'" /></label>
-		</button>
-		<button type="button" onClick="descubreComentario()"
-			class="btn btn-secondary" style="background-color: black;">
-			<label style="color: white;"><s:property value="'Comentario'" /></label>
-		</button>
-		<button type="button" id="botonBorrar" class="btn btn-secondary"
-			style="background-color: black;">
-			<label style="color: white;"><s:property value="'Borrar'" /></label>
-		</button>
-	</div>
+	<s:set var="varAl"
+		value="%{@escom.ttb020.controlacceso.mapeo.Perfil$PerfilUsuarioEnum@ALUMNO.getValor()}" />
+	<!-- Usuario en sesion -->
+	<s:set var="usuario" value="%{#session['session_user']}" />
+	<s:hidden id="hdnXML" name="data" value="%{version.data}"></s:hidden>
+	
 	<div class="row">
-		<fieldset class="firstcolumn" style="background-color: #ffffff;">
+		<div class="firstcolumn" role="group" aria-label="Basic example">
+			<s:if test="#usuario.perfil.id == #varAl">
+				<button type="button" class="btn btn-secondary"
+					onClick="descubreClase()" style="background-color: white;">
+					<label style="color: black;"><s:property value="'Clase'" /></label>
+				</button>
+				<button type="button" onClick="descubreAtributo()"
+					class="btn btn-secondary" style="background-color: white;">
+					<label style="color: black;"><s:property value="'Atributo'" /></label>
+				</button>
+				<button type="button" onClick="descubreMetodo()"
+					class="btn btn-secondary" style="background-color: white;">
+					<label style="color: black;"><s:property value="'Método'" /></label>
+				</button>
+				<button type="button" onClick="descubreComponente()"
+					class="btn btn-secondary" style="background-color: white;">
+					<label style="color: black;"><s:property
+							value="'Componente'" /></label>
+				</button>
+				<button type="button" class="btn btn-secondary"
+					onClick="descubrePaquete()" style="background-color: white;">
+					<label style="color: black;"><s:property value="'Paquete'" /></label>
+				</button>
+
+				<input id="botonGen" type="image"
+					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/herencia.png"
+					width="100" height="37" />
+				<input id="botonAs" type="image"
+					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/asociacion.png"
+					width="100" height="37" />
+				<input id="botonAg" type="image"
+					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/agregacion.png"
+					width="100" height="37" />
+				<input id="botonComposicion" type="image"
+					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/composicion.png"
+					width="100" height="37" />
+				<input id="botonDep" type="image"
+					src="${pageContext.request.contextPath}/pages/diagrama/clases/img/dependencia.png"
+					width="100" height="37" />
+
+				<button type="button" id="botonGuardar" class="btn btn-secondary"
+					style="background-color: white;">
+					<label style="color: black;"><s:property value="'Guardar'" /></label>
+				</button>
+				<button type="button" onClick="descubreComentario()"
+					class="btn btn-secondary" style="background-color: white;">
+					<label style="color: black;"><s:property
+							value="'Comentario'" /></label>
+				</button>
+				<button type="button" id="botonBorrar" class="btn btn-secondary"
+					style="background-color: white;">
+					<label style="color: black;"><s:property value="'Borrar'" /></label>
+				</button>
+				<a class="btn btn-ttb020"
+					href="${pageContext.request.contextPath}/alumno/gestionar-bienvenida">
+					<s:text name="Regresar" />
+				</a>
+				<!-- REACT 
+				<div>
+					<div id="diagramaClaseComponent"></div>
+				</div>
+					<input id="botonGen" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/herencia.png"
+						width="100" height="37" /> 
+					<input id="botonAs" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/asociacion.png"
+						width="100" height="37" /> 
+					<input id="botonAg" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/agregacion.png"
+						width="100" height="37" /> 
+					<input id="botonComposicion" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/composicion.png"
+						width="100" height="37" /> 
+					<input id="botonDep" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/dependencia.png"
+						width="100" height="37" />
+					<button type="button" id="botonGuardar" class="btn btn-secondary"
+						style="background-color: white;">
+						<label style="color: black;"><s:property value="'Guardar'" /></label>
+					</button>
+				<div>
+					<div id="comentarioComponent"></div>
+				</div>
+					<button type="button" id="botonBorrar" class="btn btn-secondary"
+						style="background-color: white;">
+						<label style="color: black;"><s:property value="'Borrar'" /></label>
+					</button>
+					<a class="btn btn-ttb020"
+						href="${pageContext.request.contextPath}/alumno/gestionar-bienvenida">
+						<s:text name="Regresar" />
+					</a>
+				-->
+			</s:if>
+			<s:else>
+				<button type="button" class="hidden btn btn-secondary"
+					onClick="descubreClase()" style="background-color: black;">
+					<label style="color: white;"><s:property value="'Clase'" /></label>
+				</button>
+				<button type="button" onClick="descubreAtributo()"
+					class="hidden btn btn-secondary" style="background-color: black;">
+					<label style="color: white;"><s:property value="'Atributo'" /></label>
+				</button>
+				<button type="button" onClick="descubreMetodo()"
+					class="hidden btn btn-secondary" style="background-color: black;">
+					<label style="color: white;"><s:property value="'Método'" /></label>
+				</button>
+				<button type="button" id="botonGen" class="hidden btn btn-secondary"
+					style="background-color: black;">
+					<label style="color: white;"><s:property value="'Herencia'" /></label>
+				</button>
+				<button type="button" id="botonGen" class="hidden btn btn-secondary"
+					style="background-color: black;">
+					<label style="color: white;"><s:property
+							value="'Generalización'" /></label>
+				</button>
+				<button type="button" id="botonAs" class="hidden btn btn-secondary"
+					style="background-color: black;">
+					<label style="color: white;"><s:property
+							value="'Asociación'" /></label>
+				</button>
+				<button type="button" id="botonAg" class="hidden btn btn-secondary"
+					style="background-color: black;">
+					<label style="color: white;"><s:property
+							value="'Agregación'" /></label>
+				</button>
+				<button type="button" id="botonComposicion"
+					class="hidden btn btn-secondary" style="background-color: black;">
+					<label style="color: white;"><s:property
+							value="'Composición'" /></label>
+				</button>
+				<button type="button" id="botonDep" class="hidden btn btn-secondary"
+					style="background-color: black;">
+					<label style="color: white;"><s:property
+							value="'Dependencia'" /></label>
+				</button>
+				<button type="button" onClick="descubreComponente()"
+					class="hidden btn btn-secondary" style="background-color: black;">
+					<label style="color: white;"><s:property
+							value="'Componente'" /></label>
+				</button>
+				<button type="button" class="hidden btn btn-secondary"
+					onClick="descubrePaquete()" style="background-color: black;">
+					<label style="color: white;"><s:property value="'Paquete'" /></label>
+				</button>
+				<button type="button" id="botonGuardar"
+					class="hidden btn btn-secondary" style="background-color: black;">
+					<label style="color: white;"><s:property value="'Guardar'" /></label>
+				</button>
+				<button type="button" onClick="descubreComentario()"
+					class="hidden btn btn-secondary" style="background-color: black;">
+					<label style="color: white;"><s:property
+							value="'Comentario'" /></label>
+				</button>
+				<button type="button" id="botonBorrar"
+					class="hidden btn btn-secondary" style="background-color: black;">
+					<label style="color: white;"><s:property value="'Borrar'" /></label>
+				</button>
+				<a class="btn btn-ttb020"
+					href="${pageContext.request.contextPath}/profesor/gestionar-grupo">
+					<s:text name="Regresar" />
+				</a>
+			</s:else>
+		</div>
+		<fieldset class="secondcolumn" style="background-color: #f8f8f8;">
 			<legend class="form-section">
 				<label><s:property value="'Información del elemento'" /></label>
 			</legend>
 			<div id="inputPaquete" class="hidden">
-				<div class="form-group outter-section">
+				<div id="inputPaqueteInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Paquete" />
-					</label><input id="npaq" class="form-control campo" /> <br /> <a
-						class="btn btn-ttb020" role="button"
-						id="botonPaq">Paquete</a>
+					</label><input id="npaq" class="form-control campo" /> <br />
+					<!--  <a class="btn btn-ttb020" role="button" id="botonPaq">Paquete</a> -->
+					<input id="botonPaq" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/paquete.png"
+						width="90" height="80" />
 				</div>
 			</div>
-			<div id="inputClase" class="">
-				<div class="form-group outter-section">
+
+			<div id="inputClase" class="hidden">
+				<div id="inputClaseInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Nombre de la Clase" />
-					</label> <input id="nclase" class="form-control campo" /><br /> <a
-						class="btn btn-ttb020" role="button"
-						id="botonClase" >ClaseA</a>
+					</label> <input id="nclase" class="form-control campo" /><br /> <input
+						id="botonClase" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/clase.png"
+						width="110" height="80" />
 				</div>
 			</div>
 			<div id="inputComponente" class="hidden">
-				<div class="form-group outter-section">
+				<div id="inputComponenteInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Componente" />
-					</label> <input id="ncomp" class="form-control campo" /><br /> <a
-						class="btn btn-ttb020" role="button"
-						id="botonComp">Componente</a>
+					</label> <input id="ncomp" class="form-control campo" /><br /> <input
+						id="botonComp" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/componente.png"
+						width="120" height="90" />
 				</div>
 			</div>
 			<div id="inputAtributo" class="hidden">
-				<div class="form-group outter-section">
+				<div id="inputAtributoInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Acceso" />
 					</label> <select id="access" class="form-control">
 						<option value="+" selected="selected">+ (public)</option>
 						<option value="#"># (protected)</option>
 						<option value="-">- (private)</option>
-						<option value="-">~ (package)</option>
 					</select> <label class="control-label label-obligatorio"> <s:text
 							name="Nombre" />
 					</label> <input id="nat" class="form-control campo" value="atributo" /> <label
 						class="control-label label-obligatorio"> <s:text
 							name="Tipo de dato" />
-					</label> <input id="tipoDato" class="form-control campo" /> <br /> <a
-						class="btn btn-ttb020" role="button" id="botonAt">Atributo</a>
+					</label> <input id="tipoDato" class="form-control campo" /> <br /> <input
+						id="botonAt" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/atributo.png"
+						width="110" height="80" />
 				</div>
 			</div>
 			<div id="inputMetodo" class="hidden">
-				<div class="form-group outter-section">
+				<div id="inputMetodoInside" class="form-group outter-section">
 					<label class="control-label label-obligatorio"> <s:text
 							name="Acceso" />
 					</label> <select id="accessMet" class="form-control">
 						<option value="+" selected="selected">+ (public)</option>
 						<option value="#"># (protected)</option>
 						<option value="-">- (private)</option>
-						<option value="-">~ (package)</option>
 					</select> <label class="control-label label-obligatorio"> <s:text
 							name="Nombre" />
 					</label> <input id="met" class="form-control campo" /> <label
 						class="control-label"> <s:text name="Parametros" />
 					</label> <input id="param" class="form-control campo" /> <label
 						class="control-label"> <s:text name="Return" />
-					</label> <input id="ret" class="form-control campo" /> <br /> <a
-						class="btn btn-ttb020" role="button"
-						id="botonMet">Método</a>
+					</label> <input id="ret" class="form-control campo" /> <br /> <input
+						id="botonMet" type="image"
+						src="${pageContext.request.contextPath}/pages/diagrama/clases/img/metodo.png"
+						width="110" height="80" />
 				</div>
 			</div>
 			<div id="inputComentario" class="hidden">
-				<a class="btn btn-ttb020" href="#" role="button"
+				<a class="btn btn-primary btn-lg" href="#" role="button"
 					id="botonNota">Comentario</a>
 			</div>
+			<s:if test="#usuario.perfil.id != #varAl">
+				<div id="inputComent">
+					<div class="form-group outter-section">
+						<label class="control-label label-obligatorio"> <s:text
+								name="Comentario" />
+						</label> <input id="comentarioIn" class="form-control campo" /><br /> <a
+							class="btn btn-ttb020" role="button" id="botonComentario">Comentario</a>
+					</div>
+				</div>
+			</s:if>
+			<s:else>
+				<div id="inputComent" class="hidden">
+					<div class="form-group outter-section">
+						<label class="control-label label-obligatorio"> <s:text
+								name="Comentario" />
+						</label> <input id="comentarioIn" class="form-control campo" /><br /> <a
+							class="btn btn-ttb020" role="button" id="botonComentario">Comentario</a>
+					</div>
+				</div>
+			</s:else>
 		</fieldset>
 		<div class="secondcolumn" id="classDiagram"></div>
 		<div class="thirdcolumn" id="comentarios">segunda columna</div>

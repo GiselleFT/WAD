@@ -85,7 +85,7 @@
 			<div class="row">
 				<!-- BOTON BOTON CREAR DIAGRAMA CLASES -->
 				<div class="outter-section form-medium text-center">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<a
 							href="${pageContext.request.contextPath}/diagrama/visualizar-detalle-proyecto!editNewClases?idProyecto=${idProyecto}"
 							class="btn btn-grid-second"> <!-- Icono check_circle --> <i

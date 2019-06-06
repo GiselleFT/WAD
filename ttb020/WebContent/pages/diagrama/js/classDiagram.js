@@ -39,29 +39,61 @@ window.onload = function() {
 	});
 	// usecaseDiagram.setName('ewe');
 	// Drawing the diagram
+
+	var xmlData = $("#hdnXML").val();
+	console.log("var CML" + xmlData);
+	if (xmlData == null) {
+		classDiagram.draw();
+	} else {
+		classDiagram.setXMLString(xmlData);
+		classDiagram.draw();
+	}
+
 	classDiagram.draw();
 	// This diagram is editable
 	classDiagram.interaction(true);
 
 	function crearPaquete() {
+        var ele = document.getElementById("botonPaq");
+        var originalPosition = ele.getBoundingClientRect();
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
 		function f(classDiagram, a, b) {
 			var npaquete = document.getElementById('npaq').value;
 			if (npaquete == "") {
-				alert("Debes insertar un nombre para el paquete");
+                alert("Debes insertar un nombre para el paquete");
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
 				return false;
 			} else {
-				var paquete = new UMLPackage({ x:a, y:b });
+				var paquete = new UMLPackage({
+					x : a,
+					y : b
+				});
 				classDiagram.addElement(paquete);
 				paquete.setName(npaquete);
 			}
 			cleanForm('npaq');
 		}
-		interaccionUnClick(f);
+		//interaccionUnClick(f);
+        dragAndDropPaquete(f);
 	}
-	
-	function addAttribute(){
+
+	function addAttribute() {
+        var ele = document.getElementById("botonAt");
+        var originalPosition = ele.getBoundingClientRect();
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
 		function f(classDiagram, a, b) {
-			var atributo = document.getElementById('nat').value;
+            var atributo = document.getElementById('nat').value;
+            if (atributo == "") {
+                alert("Debes insertar un nombre para el atributo");
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
+				return false;
+			} 
+
 			var access = document.getElementById("access");
 			var strUser = access.options[access.selectedIndex].value;
 			var tipo = document.getElementById('tipoDato').value;
@@ -69,25 +101,37 @@ window.onload = function() {
 			$("#clase").attr("value", elemento1.getName());
 			$("#hdnAt").attr("value", atributo);
 			registrarAtributos();
-			
-			if(elemento1.getType() == "UMLClass"){	
-				if(tipo == "")
-					elemento1.addAttribute( strUser + atributo );
+
+			if (elemento1.getType() == "UMLClass") {
+				if (tipo == "")
+					elemento1.addAttribute(strUser + atributo);
 				else
-					elemento1.addAttribute( strUser + atributo + ":" + tipo );
-				
-				classDiagram.interaction(true);			
-			}	
+					elemento1.addAttribute(strUser + atributo + ":" + tipo);
+
+				classDiagram.interaction(true);
+			}
 			cleanForm('nat');
 			cleanForm('tipoDato');
 			$('#access').get(0).selectedIndex = 0;
 		}
-		interaccionUnClickEnviar(f);
+		//interaccionUnClickEnviar(f);
+        dragAndDropAtributoEnviar(f);
 	}
-	
-	function addOperation(){
+
+	function addOperation() {
+        var ele = document.getElementById("botonMet");
+        var originalPosition = ele.getBoundingClientRect();
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
 		function f(classDiagram, a, b) {
-			var metodo = document.getElementById('met').value;
+            var metodo = document.getElementById('met').value;
+            if (metodo == "") {
+                alert("Debes insertar un nombre para el metodo");
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
+				return false;
+			}
 			var param = document.getElementById('param').value;
 			var ret = document.getElementById('ret').value;
 			var access = document.getElementById("accessMet");
@@ -96,26 +140,38 @@ window.onload = function() {
 			$("#classehdn").attr("value", elemento1.getName());
 			$("#hdnMet").attr("value", metodo);
 			registrarMetodos();
-			
-			if(elemento1.getType() == "UMLClass"){
-				if(ret == "")
-					elemento1.addOperation(strUser + metodo + "(" + param + ")");
+
+			if (elemento1.getType() == "UMLClass") {
+				if (ret == "")
+					elemento1
+							.addOperation(strUser + metodo + "(" + param + ")");
 				else
-					elemento1.addOperation(strUser + metodo + "(" + param + "):" + ret);
-				classDiagram.interaction(true);	
+					elemento1.addOperation(strUser + metodo + "(" + param
+							+ "):" + ret);
+				classDiagram.interaction(true);
 			}
 			cleanForm('met');
 			cleanForm('param');
 			cleanForm('ret');
 			$('#accessMet').get(0).selectedIndex = 0;
 		}
-		interaccionUnClickEnviar(f);
+		//interaccionUnClickEnviar(f);
+        dragAndDropMetodoEnviar(f);
 	}
 
 	function crearClase() {
-		function f(classDiagram, a, b) {
+        var ele = document.getElementById("botonClase");
+        var originalPosition = ele.getBoundingClientRect();
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
+        function f(classDiagram, a, b) {
+            var nclase = document.getElementById('nclase').value;
+
 			if (nclase == "") {
-				alert("Debes insertar un nombre para la clase");
+                alert("Debes insertar un nombre para la clase");
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
 				return false;
 			} else {
 				var clase = new UMLClass({
@@ -123,7 +179,7 @@ window.onload = function() {
 					y : b
 				});
 				classDiagram.addElement(clase);
-				clase.setName(nclase);
+                clase.setName(nclase);
 			}
 			cleanForm('nclase');
 		}
@@ -137,15 +193,22 @@ window.onload = function() {
 				+ new Date().toLocaleString()
 				+ " ==> <font color='green'>Tip:</font> Se recomienda utilizar un <b>verbo fuerte</b> para nombrar los metodos de la clase y ordenarlos en orden descendente por su tipo de acceso.</p>");
 		var nclase = document.getElementById('nclase').value;
-        //interaccionUnClick(f);
-        dragAndDrop(f);
+		//interaccionUnClick(f);
+        dragAndDropClase(f);
 	}
 
 	function crearComponente() {
+        var ele = document.getElementById("botonComp");
+        var originalPosition = ele.getBoundingClientRect();
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
 		function f(classDiagram, a, b) {
 			var nombre = document.getElementById('ncomp').value;
 			if (nombre == "") {
-				alert("Debes insertar un nombre para el componente");
+                alert("Debes insertar un nombre para el componente");
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
 				return false;
 			} else {
 				var element = new UMLComponent({
@@ -157,7 +220,8 @@ window.onload = function() {
 			}
 			cleanForm('ncomp');
 		}
-		interaccionUnClick(f);
+		//interaccionUnClick(f);
+        dragAndDropComponente(f);
 	}
 
 	function guardar() {
@@ -463,15 +527,7 @@ window.onload = function() {
 		}
 		interaccionUnClick(f);
 	}
-	/*
-	function exportar(){
-		classDiagram.stopEvents();
-		classDiagram.draw();
-		var mainDiagram =  document.getElementById('classDiagram');
-		var url = classDiagram.toDataURL( 'image/png' );
-		window.open( url, '_blank' );
-	}*/
-	
+
 	var interaccionUnClickEnviar = function(funcion) {
 		classDiagram.interaction(false);
 		var div = document.getElementsByClassName('ud_diagram_div')[0];
@@ -505,25 +561,28 @@ window.onload = function() {
 		div.onclick = funcionCaptura;
     }
 
-    var dragAndDrop = function(funcion) {
+    var dragAndDropAtributoEnviar = function(funcion) {
 		classDiagram.interaction(false);
 		var div = document.getElementsByClassName('ud_diagram_div')[0];
+        var ele = document.getElementById("botonAt");
+        //var posX = originalPosition.left + window.scrollX;
+        //var posY = originalPosition.top + window.scrollY;
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
 
-        var ele = document.getElementById("botonClase");
         ele.onmousedown = function(event){
-            var mousex = event.pageX - div.offsetLeft;
-            var mousey = event.pageY - div.offsetTop;
-
+            var shiftX = event.clientX - ele.getBoundingClientRect().left;
+            var shiftY = event.clientY - ele.getBoundingClientRect().top;
+            
             ele.style.position = 'absolute';
-            //element.style.zIndex = 1000;
             document.body.append(ele);
 
             moveAt(event.pageX, event.pageY);
             
             //centra componente en las coordenadas
             function moveAt(pageX, pageY){
-                ele.style.left = pageX - mousex + 'px';
-                ele.style.top = pageY - mousey + 'px';
+                ele.style.left = pageX - shiftX + 'px';
+                ele.style.top = pageY - shiftY + 'px';
             }
 
             function onMouseMove(event){
@@ -536,22 +595,159 @@ window.onload = function() {
             //drop
             ele.onmouseup = function(){
                 document.removeEventListener('mousemove', onMouseMove);
-                //ele.onmouseup = null;
-                ele.onmouseup = funcionCaptura;
-                ele.onclick = funcionCaptura;
+                ele.onclick = funcionCaptura();
+                ele.style.position = "absolute";
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
+                document.body.append(ele);
+                ele.onmouseup = null;
             };
         };
 
-        ele.ondragstart = function(){
+        ele.ondragstart = function(event){
             return false;
         };
-        
-		var funcionCaptura = function(event) {
+
+        var funcionCaptura = function() {
 			var mousex = event.pageX - div.offsetLeft;
             var mousey = event.pageY - div.offsetTop;
+            funcion(classDiagram, mousex, mousey);
+            ele.onclick = false;
+            classDiagram.draw();
+            //classDiagram.interaction(true);
+		}
+        
+        //Para regresar el boton al componente de clase y que no aparezca en otros componentes haciendo cualquier clic en la seccion main
+        var funcionClickDespues = function(event){
+            var dbotonAt = document.getElementById("botonAt");
+            var dbody = document.getElementsByTagName("BODY")[0];
+            dbody.removeChild(dbotonAt);
+            document.getElementById("inputAtributoInside").appendChild(dbotonAt);
+        }
+        main.onclick = funcionClickDespues;
+        //main.onclick = null;
+	}
+
+    var dragAndDropMetodoEnviar = function(funcion) {
+		classDiagram.interaction(false);
+		var div = document.getElementsByClassName('ud_diagram_div')[0];
+        var ele = document.getElementById("botonMet");
+        //var posX = originalPosition.left + window.scrollX;
+        //var posY = originalPosition.top + window.scrollY;
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
+        ele.onmousedown = function(event){
+            var shiftX = event.clientX - ele.getBoundingClientRect().left;
+            var shiftY = event.clientY - ele.getBoundingClientRect().top;
+            ele.style.position = 'absolute';
+            document.body.append(ele);
+
+            moveAt(event.pageX, event.pageY);
             
-			funcion(classDiagram, mousex, mousey);
-			div.onclick = false;
+            //centra componente en las coordenadas
+            function moveAt(pageX, pageY){
+                ele.style.left = pageX - shiftX + 'px';
+                ele.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event){
+                moveAt(event.pageX, event.pageY);
+            }
+
+            //mueve de acuerdo al mouse
+            document.addEventListener('mousemove', onMouseMove);
+            
+            //drop
+            ele.onmouseup = function(){
+                document.removeEventListener('mousemove', onMouseMove);
+                ele.onclick = funcionCaptura();
+                ele.style.position = "absolute";
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
+                document.body.append(ele);
+                ele.onmouseup = null;
+            };
+        };
+
+        ele.ondragstart = function(event){
+            return false;
+        };
+
+        var funcionCaptura = function() {
+			var mousex = event.pageX - div.offsetLeft;
+            var mousey = event.pageY - div.offsetTop;
+            funcion(classDiagram, mousex, mousey);
+            ele.onclick = false;
+			classDiagram.draw();
+		}
+        
+        //Para regresar el boton al componente de clase y que no aparezca en otros componentes haciendo cualquier clic en la seccion main
+        var funcionClickDespues = function(event){
+            var dbotonMet = document.getElementById("botonMet");
+            var dbody = document.getElementsByTagName("BODY")[0];
+            dbody.removeChild(dbotonMet);
+            document.getElementById("inputMetodoInside").appendChild(dbotonMet);
+        }
+        main.onclick = funcionClickDespues;
+        //main.onclick = null;
+	}
+    
+    var dragAndDropClase = function(funcion) {
+		classDiagram.interaction(false);
+		var div = document.getElementsByClassName('ud_diagram_div')[0];
+        var ele = document.getElementById("botonClase");
+
+        var originalPosition = ele.getBoundingClientRect();
+        //var posX = originalPosition.left + window.scrollX;
+        //var posY = originalPosition.top + window.scrollY;
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
+        ele.onmousedown = function(event){
+            var shiftX = event.clientX - ele.getBoundingClientRect().left;
+            var shiftY = event.clientY - ele.getBoundingClientRect().top;
+
+            ele.style.position = 'absolute';
+            document.body.append(ele);
+
+            moveAt(event.pageX, event.pageY);
+            
+            //centra componente en las coordenadas
+            function moveAt(pageX, pageY){
+                ele.style.left = pageX - shiftX + 'px';
+                ele.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event){
+                moveAt(event.pageX, event.pageY);
+            }
+
+            //mueve de acuerdo al mouse
+            document.addEventListener('mousemove', onMouseMove);
+            
+            //drop
+            ele.onmouseup = function(){
+                document.removeEventListener('mousemove', onMouseMove);
+                ele.onclick = funcionCaptura();
+                ele.style.position = "absolute";
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
+                document.body.append(ele);
+                ele.onmouseup = null;
+            };
+        };
+
+        ele.ondragstart = function(event){
+            return false;
+        };
+
+        
+		var funcionCaptura = function() {
+			var mousex = event.pageX - div.offsetLeft;
+            var mousey = event.pageY - div.offsetTop;
+            funcion(classDiagram, mousex, mousey);
+            ele.onclick = false;
 			classDiagram.draw();
 			var elemento1 = classDiagram.getElementByPoint(mousex, mousey);
 			if (elemento1.getType() == "UMLClass")
@@ -559,10 +755,158 @@ window.onload = function() {
 			obtenerMetodos(elemento1.getName());
 			classDiagram.interaction(true);
 		}
-		//div.onclick = funcionCaptura;
-	}
+        
+        //Para regresar el boton al componente de clase y que no aparezca en otros componentes haciendo cualquier clic en la seccion main
+        var funcionClickDespues = function(event){
+            var dbotonClase = document.getElementById("botonClase");
+            var dbody = document.getElementsByTagName("BODY")[0];
+            dbody.removeChild(dbotonClase);
+            document.getElementById("inputClaseInside").appendChild(dbotonClase);
+        }
+        main.onclick = funcionClickDespues;
+    }
+
+
+    var dragAndDropPaquete = function(funcion) {
+		classDiagram.interaction(false);
+		var div = document.getElementsByClassName('ud_diagram_div')[0];
+        var ele = document.getElementById("botonPaq");
+        var originalPosition = ele.getBoundingClientRect();
+        //var posX = originalPosition.left + window.scrollX;
+        //var posY = originalPosition.top + window.scrollY;
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+        console.log("En draganddrop: posX = " + posX + " , posY= " + posY);
+
+        ele.onmousedown = function(event){
+            var shiftX = event.clientX - ele.getBoundingClientRect().left;
+            var shiftY = event.clientY - ele.getBoundingClientRect().top;
+            ele.style.position = 'absolute';
+            document.body.append(ele);
+            moveAt(event.pageX, event.pageY);
+            
+            //centra componente en las coordenadas
+            function moveAt(pageX, pageY){
+                ele.style.left = pageX - shiftX + 'px';
+                ele.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event){
+                moveAt(event.pageX, event.pageY);
+            }
+
+            //mueve de acuerdo al mouse
+            document.addEventListener('mousemove', onMouseMove);
+            
+            //drop
+            ele.onmouseup = function(){
+                document.removeEventListener('mousemove', onMouseMove);
+                ele.onclick = funcionCaptura();
+                ele.style.position = "absolute";
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
+                document.body.append(ele);
+                ele.onmouseup = null;
+            };
+        };
+
+        ele.ondragstart = function(event){
+            return false;
+        };
+
+        
+		var funcionCaptura = function() {
+			var mousex = event.pageX - div.offsetLeft;
+            var mousey = event.pageY - div.offsetTop;
+            
+            funcion(classDiagram, mousex, mousey);
+            ele.onclick = false;
+			classDiagram.draw();
+			var elemento1 = classDiagram.getElementByPoint(mousex, mousey);
+            console.log("elemento1 = " + elemento1.getName());
+			if (elemento1.getType() == "UMLClass")
+				$("#hdnClase").attr("value", elemento1.getName());
+			obtenerMetodos(elemento1.getName());
+			classDiagram.interaction(true);
+		}
+        
+        //Para regresar el boton al componente de clase y que no aparezca en otros componentes haciendo cualquier clic en la seccion main
+        var funcionClickDespues = function(event){
+            var dbotonPaq = document.getElementById("botonPaq");
+            var dbody = document.getElementsByTagName("BODY")[0];
+            dbody.removeChild(dbotonPaq);
+            document.getElementById("inputPaqueteInside").appendChild(dbotonPaq);
+        }
+        main.onclick = funcionClickDespues;
+    }
+
+    var dragAndDropComponente = function(funcion) {
+		classDiagram.interaction(false);
+		var div = document.getElementsByClassName('ud_diagram_div')[0];
+        var ele = document.getElementById("botonComp");
+        //var posX = originalPosition.left + window.scrollX;
+        //var posY = originalPosition.top + window.scrollY;
+        var posX = ele.offsetLeft;
+        var posY = ele.offsetTop;
+
+        ele.onmousedown = function(event){
+            var shiftX = event.clientX - ele.getBoundingClientRect().left;
+            var shiftY = event.clientY - ele.getBoundingClientRect().top;
+            ele.style.position = 'absolute';
+            document.body.append(ele);
+            moveAt(event.pageX, event.pageY);
     
-    
+            //centra componente en las coordenadas
+            function moveAt(pageX, pageY){
+                ele.style.left = pageX - shiftX + 'px';
+                ele.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event){
+                moveAt(event.pageX, event.pageY);
+            }
+
+            //mueve de acuerdo al mouse
+            document.addEventListener('mousemove', onMouseMove);
+            
+            //drop
+            ele.onmouseup = function(){
+                document.removeEventListener('mousemove', onMouseMove);
+                ele.onclick = funcionCaptura();
+                ele.style.position = "absolute";
+                ele.style.left = posX+'px';
+                ele.style.top = posY+'px';
+                document.body.append(ele);
+                ele.onmouseup = null;
+            };
+        };
+
+        ele.ondragstart = function(event){
+            return false;
+        };
+
+		var funcionCaptura = function() {
+			var mousex = event.pageX - div.offsetLeft;
+            var mousey = event.pageY - div.offsetTop;
+            funcion(classDiagram, mousex, mousey);
+            ele.onclick = false;
+			classDiagram.draw();
+			var elemento1 = classDiagram.getElementByPoint(mousex, mousey);
+			if (elemento1.getType() == "UMLClass")
+				$("#hdnClase").attr("value", elemento1.getName());
+			obtenerMetodos(elemento1.getName());
+			classDiagram.interaction(true);
+		}
+        
+        //Para regresar el boton al componente de clase y que no aparezca en otros componentes haciendo cualquier clic en la seccion main
+        var funcionClickDespues = function(event){
+            var dbotonComp = document.getElementById("botonComp");
+            var dbody = document.getElementsByTagName("BODY")[0];
+            dbody.removeChild(dbotonComp);
+            document.getElementById("inputComponenteInside").appendChild(dbotonComp);
+        }
+        main.onclick = funcionClickDespues;
+    }
 
 	var interactionDoubleClick = function(g) {
 		classDiagram.interaction(false);
@@ -608,6 +952,12 @@ window.onload = function() {
 		div.onclick = a
 	}
 
+	function saveComentary() {
+		var nota = document.getElementById('comentarioIn').value;
+		$("#textoComentario").attr("value", nota);
+		guardarComentario();
+	}
+
 	document.getElementById('botonPaq').onclick = crearPaquete;
 	document.getElementById('botonClase').onclick = crearClase;
 	document.getElementById('botonComp').onclick = crearComponente;
@@ -622,6 +972,7 @@ window.onload = function() {
 	document.getElementById('botonBorrar').onclick = borrar;
 	document.getElementById('botonAt').onclick = addAttribute;
 	document.getElementById('botonMet').onclick = addOperation;
+	document.getElementById('botonComentario').onclick = saveComentary;
 }
 
 /**
@@ -722,25 +1073,27 @@ function obtenerMetodos() {
 
 				var cadena = respuesta.response.dataMetodos;
 				var cadena2 = respuesta.response.dataAtributos;
-				
+
 				var cad1 = "";
 				var cad2 = "";
-				
-				for(var i=0; i<cadena.length; i++){
+
+				for (var i = 0; i < cadena.length; i++) {
 					cad1 = cad1 + cadena[i] + ", ";
 				}
-				
-				for(var i=0; i<cadena2.length; i++){
+
+				for (var i = 0; i < cadena2.length; i++) {
 					cad2 = cad2 + cadena2[i] + ", ";
 				}
-				
+
 				consoleWrite("<p align='left'>" + new Date().toLocaleString()
-						+ "==> <font color='green'>Tip:</font> La clase <b>" + clase + "</b> puede tener los"
+						+ "==> <font color='green'>Tip:</font> La clase <b>"
+						+ clase + "</b> puede tener los"
 						+ " siguientes <u>atributos</u>: " + cad2 + "</p>");
-				
+
 				consoleWrite("<p align='left'>" + new Date().toLocaleString()
-						+ "==> <font color='green'>Tip:</font> La clase <b>" + clase + "</b> puede tener los"
-						+ " siguientes <u>metodos</u>: " + cad1 + "</p>");			
+						+ "==> <font color='green'>Tip:</font> La clase <b>"
+						+ clase + "</b> puede tener los"
+						+ " siguientes <u>metodos</u>: " + cad1 + "</p>");
 
 			} else {
 				console.log(respuesta.response.estatus);
@@ -795,23 +1148,22 @@ function registrarDatos() {
 function guardarDiagrama() {
 	var form = $("#hdnSave");
 
-	$
-			.ajax({
-				type : form.attr("method"),
-				url : form.attr("action"),
-				data : form.serialize(),
-				cache : false,
-				async : false,
-				success : function(data) {
-					var ajaxResult = data.ajaxResult;
-					if (gestionarErroresAjaxResult(ajaxResult, form.attr("id"))) {
-						CancelarDlgConfirm();
-					}
-				},
-				error : function(data) {
-					console.log("error");
-				}
-			});
+	$.ajax({
+		type : form.attr("method"),
+		url : form.attr("action"),
+		data : form.serialize(),
+		cache : false,
+		async : false,
+		success : function(data) {
+			var ajaxResult = data.ajaxResult;
+			if (gestionarErroresAjaxResult(ajaxResult, form.attr("id"))) {
+				CancelarDlgConfirm();
+			}
+		},
+		error : function(data) {
+			console.log("error");
+		}
+	});
 }
 
 function CancelarDlgConfirm() {
@@ -872,6 +1224,37 @@ function registrarMetodos() {
 //						+ "Metodos OK </p>");
 			} else {
 				console.log(respuesta.response.estatus);
+				console.log("No se encontro información correspondiente");
+			}
+		},
+		error : function(data) {
+			console.log("error");
+		}
+	});
+}
+
+/**
+ * Implementación de llamada a AJAX para guardar comentarios en la BD
+ * 
+ * @param
+ * @returns
+ */
+function guardarComentario() {
+	var form = $("#guardarComentario");
+	$.ajax({
+		type : form.attr("method"),
+		url : form.attr("action"),
+		data : form.serialize(),
+		cache : false,
+		dataType : 'html',
+		async : false,
+		success : function(data) {
+			var respuesta = JSON.parse(data).ajaxResult;
+			if (respuesta.response.estatus == "ENCONTRADO") {
+				consoleWrite("<p align='left'>" + new Date().toLocaleString()
+						+ "==> <font color='blue'>Info:</font> "
+						+ respuesta.response.string + "</p>");
+			} else {
 				console.log("No se encontro información correspondiente");
 			}
 		},
