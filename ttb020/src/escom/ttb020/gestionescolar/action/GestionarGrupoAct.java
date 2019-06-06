@@ -128,16 +128,6 @@ public class GestionarGrupoAct extends ActionSupport {
 	}
 	
 	
-	/**
-	 * Eliminar grupos
-	 * 
-	 * @return
-	 */
-	public String delete() {
-		System.err.println("Grupo " + idSel);
-		grupoBs.eliminarGrupo(idSel);
-		return "index";
-	}
 	
 	
 
